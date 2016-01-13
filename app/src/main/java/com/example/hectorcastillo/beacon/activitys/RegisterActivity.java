@@ -1,4 +1,4 @@
-package com.example.hectorcastillo.beacon;
+package com.example.hectorcastillo.beacon.activitys;
 
 /**
  * Created by hector castillo on 12/1/16.

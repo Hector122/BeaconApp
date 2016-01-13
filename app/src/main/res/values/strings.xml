@@ -15,7 +15,8 @@
     <string name="error_not_internet_connection">"You don't have internet connection. "</string>
 
 
+    <string name="forgot_password">Forgot password ?</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
     <string name= "text_example_message_long">"Lorem ipsum dolor sit amet, consectetur adipiscing elit.</string>
-    <string name="text_example_title_short">"Lorem ipsum dolor"</string>
+    <string name="text_example_title_short">"Lorem ipsum"</string>
 </resources>
