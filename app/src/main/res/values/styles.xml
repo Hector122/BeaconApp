@@ -8,4 +8,30 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- Style for Register Buttom -->
+
+    <style name="LoginButton">
+        <item name="android:layout_width">270dp</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:background">@drawable/button_shape_one</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/login_button_text_size</item>
+        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
+    <style name="RegisterButton">
+        <item name="android:layout_width">270dp</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:background">@drawable/button_shape_two</item>
+        <item name="android:textColor">@color/dark_grey</item>
+        <item name="android:textSize">@dimen/login_button_text_size</item>
+        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
 </resources>
