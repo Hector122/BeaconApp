@@ -11,14 +11,16 @@
     <!-- Login progress -->
     <ProgressBar
         android:id="@+id/login_progress"
-        style="?android:attr/progressBarStyleLarge"
+        style="?android:attr/spinnerDropDownItemStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:layout_marginBottom="8dp"
         android:visibility="gone" />
 
     <LinearLayout
-        android:id="@+id/email_login_form"
+        android:id="@+id/login_form_container"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -45,6 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:hint="@string/prompt_email"
+                android:imeOptions="actionNext"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
                 android:singleLine="true" />
@@ -61,9 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:hint="@string/prompt_password"
-                android:imeActionId="@+id/login"
-                android:imeActionLabel="@string/action_sign_in"
-                android:imeOptions="actionUnspecified"
+                android:imeOptions="actionGo"
                 android:inputType="textPassword"
                 android:maxLines="1"
                 android:singleLine="true" />
@@ -80,8 +81,8 @@
             android:id="@+id/text_forgot_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:text="@string/forgot_password" />
+            android:text="@string/forgot_password"
+            android:textSize="14sp" />
 
     </LinearLayout>
 

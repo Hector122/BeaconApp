@@ -14,15 +14,28 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activitys.MainActivity"
-            android:label="@string/app_name">
+            android:name=".activists.MainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activitys.LoginActivity">
+        <activity
+            android:name=".activists.LoginActivity"
+            android:parentActivityName=".activists.MainActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.app.beacon" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activists.RegisterActivity"
+            android:parentActivityName=".activists.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="com.app.beacon" />
                 <category android:name="android.intent.category.LAUNCHER" />

@@ -1,4 +1,4 @@
-package com.example.hectorcastillo.beacon.activitys;
+package com.example.hectorcastillo.beacon.activists;
 
 import android.app.Activity;
 
