@@ -1,13 +1,12 @@
 package com.example.hectorcastillo.beacon.activists;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -26,6 +25,9 @@ import java.util.List;
  * @author hector castillo
  */
 public class LoginActivity extends AppCompatActivity implements OnClickListener {
+    public static final String EXTRA_EMAIL = "com.example.beacon.EMAIL";
+    public static final String STATE_EMAIL = "UserEmailInput";
+
     // Id to identity READ_CONTACTS permission request.
     // private static final int REQUEST_READ_CONTACTS = 0;
 
@@ -34,7 +36,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
     private EditText mPasswordView;
     private View mProgressView;
     private Button mEmailSignInButton;
-    private TextView mForgotPassswordView;
+    private TextView mForgotPasswordView;
 
     // Async Task for login.
     private UserLoginTask mAuthTask = null;
@@ -43,7 +45,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
     // TODO: remove after connecting to a real authentication system.
 
     private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world", "test@algo.com:1234"
+            "foo@example.com:hello", "bar@example.com:world", "test@m.com:1234"
     };
 
     /**
@@ -56,7 +58,8 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
         setContentView(R.layout.activity_login);
 
         // Set up the login form.
-        mForgotPassswordView = (TextView) findViewById(R.id.text_forgot_password);
+        mForgotPasswordView = (TextView) findViewById(R.id.text_forgot_password);
+        mForgotPasswordView.setOnClickListener(this);
 
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email_text_view);
 
@@ -67,29 +70,48 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
 
         mPasswordView = (EditText) findViewById(R.id.password);
 
-        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == R.id.login || id == EditorInfo.IME_ACTION_GO) {
-                    attemptLogin();
-                    return true;
-                }
-                return false;
-            }
-        });
+        mPasswordView.setOnClickListener(this);
+
+        //Restore the state.
+        if(savedInstanceState != null){
+            String email = savedInstanceState.getString(STATE_EMAIL);
+            mEmailView.setText(email);
+        }
+
+//        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//            @Override
+//            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
+//                if (id == R.id.login || id == EditorInfo.IME_ACTION_GO) {
+//                    attemptLogin();
+//                    return true;
+//                }
+//                return false;
+//            }
+//        });
     }
 
+
+    @Override
+    protected void onSaveInstanceState(Bundle savedInstanceState) {
+        //save the user email text.
+        savedInstanceState.putString(STATE_EMAIL, mEmailView.getText().toString());
+
+        // Always Call the superclass so it CAN Save the View Hierarchy State
+        super.onSaveInstanceState(savedInstanceState);
+    }
 
     @Override
     public void onClick(View view) {
 
         switch (view.getId()) {
-            case R.id.login_button:
-                //TODO: validate login credentials and empty fields
-                break;
-
+            case R.id.password:
             case R.id.email_sign_in_button:
                 attemptLogin();
+                break;
+
+            case R.id.text_forgot_password:
+                startForgotEmailActivity();
+                break;
 
             default:
                 break;
@@ -145,6 +167,16 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute();
         }
+    }
+
+    /**
+     *
+     */
+    private void startForgotEmailActivity() {
+        Intent intent = new Intent(this, ForgotPasswordActivity.class);
+        intent.putExtra(EXTRA_EMAIL, mEmailView.getText().toString());
+
+        startActivity(intent);
     }
 
 
@@ -218,7 +250,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
             // show the progress bar
             mProgressView.setVisibility(View.VISIBLE);
 
-            setInvisbleForm(mEmailSignInButton, mForgotPassswordView,
+            setInvisbleForm(mEmailSignInButton, mForgotPasswordView,
                     mPasswordView, mEmailView);
 
         }
@@ -250,7 +282,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();
 
-                setVisibilityForm(mEmailSignInButton, mForgotPassswordView,
+                setVisibilityForm(mEmailSignInButton, mForgotPasswordView,
                         mPasswordView, mEmailView);
             }
         }
