@@ -69,5 +69,11 @@
     </style>
 
 
+    <!-- check this maybe delete -->
+    <!-- -->
+    <!--<style name="AppTheme" parent="Base.AppTheme">-->
+        <!--<item name="android:windowContentTransitions">true</item>-->
+    <!--</style>-->
+
 
 </resources>
