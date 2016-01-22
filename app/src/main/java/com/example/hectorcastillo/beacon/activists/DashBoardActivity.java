@@ -77,7 +77,7 @@ public class DashBoardActivity extends AppCompatActivity {
 
         if(null != actionBar){
             // Put icon in the drawer toggle
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_action_name);
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 

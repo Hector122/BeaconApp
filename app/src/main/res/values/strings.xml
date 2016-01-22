@@ -28,11 +28,13 @@
     <string name="email_example">email@example.com.do</string>
 
 
-    <!-- -->
+    <!-- Nav. Drawer -->
     <string name="item_home">Home</string>
     <string name="item_category">Category</string>
     <string name="item_test">Test</string>
     <string name="item_other">Other</string>
+    <string name="sub_item_title">Configuration</string>
+    <string name="sub_item_logout">logout</string>
 
     <!-- check and delete this -->
     <string-array name="planets_array">
