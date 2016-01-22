@@ -55,7 +55,7 @@
 
         <!-- TODO: change name to LAUNCHER -->
         <activity
-            android:name=".activists.DashBoardActivty"
+            android:name=".activists.DashBoardActivity"
             android:parentActivityName=".activists.LoginActivity"
             android:screenOrientation="portrait">
             <intent-filter>

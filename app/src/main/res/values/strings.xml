@@ -28,6 +28,13 @@
     <string name="email_example">email@example.com.do</string>
 
 
+    <!-- -->
+    <string name="item_home">Home</string>
+    <string name="item_category">Category</string>
+    <string name="item_test">Test</string>
+    <string name="item_other">Other</string>
+
+    <!-- check and delete this -->
     <string-array name="planets_array">
         <item>item one</item>
         <item>item two</item>
