@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -22,12 +23,11 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_forgot_password);
 
         initializeVariables();
+        setToolbar();
         setEmailText();
-
     }
 
     private void initializeVariables() {
@@ -37,6 +37,16 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
         mContinueButton = (Button) findViewById(R.id.continue_button);
         mContinueButton.setOnClickListener(this);
 
+    }
+
+    private void setToolbar(){
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        if (getSupportActionBar() != null) {
+            // Providing back navigation.
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     private void setEmailText() {

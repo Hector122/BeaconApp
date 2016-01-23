@@ -20,7 +20,7 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="com.app.beacon" />
+                <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -56,10 +56,9 @@
         <!-- TODO: change name to LAUNCHER -->
         <activity
             android:name=".activists.DashBoardActivity"
-            android:parentActivityName=".activists.LoginActivity"
             android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="com.app.beacon" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

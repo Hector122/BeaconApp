@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -45,7 +46,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
     // TODO: remove after connecting to a real authentication system.
 
     private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world", "test@m.com:1234"
+            "foo@example.com:hello", "bar@example.com:world", "test@m.com:1234", "11:11"
     };
 
     /**
@@ -57,6 +58,18 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
+        initializeVariables();
+
+        //Restore the state.
+        if (savedInstanceState != null) {
+            String email = savedInstanceState.getString(STATE_EMAIL);
+            mEmailView.setText(email);
+        }
+
+    }
+
+    private void initializeVariables() {
         // Set up the login form.
         mForgotPasswordView = (TextView) findViewById(R.id.text_forgot_password);
         mForgotPasswordView.setOnClickListener(this);
@@ -72,24 +85,23 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
 
         mPasswordView.setOnClickListener(this);
 
-        //Restore the state.
-        if(savedInstanceState != null){
-            String email = savedInstanceState.getString(STATE_EMAIL);
-            mEmailView.setText(email);
-        }
+        //Providing back navigation.
+        setToolbar();
 
-//        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-//            @Override
-//            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-//                if (id == R.id.login || id == EditorInfo.IME_ACTION_GO) {
-//                    attemptLogin();
-//                    return true;
-//                }
-//                return false;
-//            }
-//        });
     }
 
+    /**
+     * Set the Android Toolbar
+     */
+    private void setToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        if (getSupportActionBar() != null) {
+            // Providing back navigation.
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+    }
 
     @Override
     protected void onSaveInstanceState(Bundle savedInstanceState) {
@@ -106,7 +118,8 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
         switch (view.getId()) {
             case R.id.password:
             case R.id.email_sign_in_button:
-                attemptLogin();
+               startDashBoardCategoryActivity();
+               // attemptLogin();
                 break;
 
             case R.id.text_forgot_password:
@@ -177,6 +190,13 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
         intent.putExtra(EXTRA_EMAIL, mEmailView.getText().toString());
 
         startActivity(intent);
+    }
+
+    private void startDashBoardCategoryActivity() {
+        Intent intent = new Intent(this, DashBoardActivity.class);
+        startActivity(intent);
+
+        finish();
     }
 
 

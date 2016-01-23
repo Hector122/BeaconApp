@@ -80,7 +80,5 @@ public class DashBoardActivity extends AppCompatActivity {
             actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-
     }
-
 }
