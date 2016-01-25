@@ -1,5 +1,6 @@
 package com.example.hectorcastillo.beacon.activists;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -9,16 +10,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.GridView;
 
 import com.example.hectorcastillo.beacon.R;
+import com.example.hectorcastillo.beacon.adapters.CategoryAdapter;
+import com.example.hectorcastillo.beacon.sponsor.Sponsor;
 
 /**
  * Created by hector castillo on 12/1/16.
  */
-public class DashBoardActivity extends AppCompatActivity {
+public class DashBoardActivity extends AppCompatActivity
+        implements AdapterView.OnItemClickListener {
 
     private DrawerLayout mDrawerLayout;
-    private String mDrawerrTitle;
+    private String mDrawerTitle;
+
+    private GridView mGridView;
+    private CategoryAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,40 +37,44 @@ public class DashBoardActivity extends AppCompatActivity {
 
         //set toolbar like action bar.
         setToolbar();
+        // set the corresponding view.
+        initializeVariables();
+        //
+        setCategoryAdapter();
+
+        mDrawerTitle = getResources().getString(R.string.item_home);
+        if (savedInstanceState == null) {
+            selectItem(mDrawerTitle);
+        }
+    }
+
+    private void initializeVariables() {
+        mGridView = (GridView) findViewById(R.id.grid_view);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-
-        if (navigationView == null) {
-            //Add Features.
-
+        if (navigationView != null) {
+            setupDrawerContent(navigationView);
         }
+    }
 
+    private void setCategoryAdapter() {
+        mAdapter = new CategoryAdapter(this);
+        mGridView.setAdapter(mAdapter);
 
-//TODO: delete this.
-        //mPlanetTitles = getResources().getStringArray(R.array.planets_array);
-        // mDrawerList = (ListView) findViewById(R.id.left_drawer);
-
-
-        //mDrawerList.setAdapter(new ArrayAdapter<String>(this,
-        //      R.layout.drawer_list_item, mPlanetTitles));
-        // Set the list's click listener
-        // mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
-
+        mGridView.setOnItemClickListener(this);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if(!mDrawerLayout.isDrawerOpen(GravityCompat.START)){
-            getMenuInflater().inflate(R.menu.drawer_view, menu);
-            return true;
-        }
-        return super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.settings_action, menu);
+        return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case android.R.id.home:
                 mDrawerLayout.openDrawer(GravityCompat.START);
                 return true;
@@ -75,10 +89,56 @@ public class DashBoardActivity extends AppCompatActivity {
         //TODO: support previous version.
         final ActionBar actionBar = getSupportActionBar();
 
-        if(null != actionBar){
+        if (null != actionBar) {
             // Put icon in the drawer toggle
             actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+    }
+
+    private void setupDrawerContent(NavigationView navigationView) {
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        // Mark pressed item
+                        menuItem.setChecked(true);
+                        // Create a new Fragment
+                        String title = menuItem.getTitle().toString();
+                        selectItem(title);
+                        return true;
+                    }
+                }
+        );
+    }
+
+    private void selectItem(String title) {
+        // Send title like argument to the fragment
+//        Bundle args = new Bundle();
+//        args.putString(PlaceholderFragment.ARG_SECTION_TITLE, title);
+//
+//        Fragment fragment = PlaceholderFragment.newInstance(title);
+//        fragment.setArguments(args);
+//        FragmentManager fragmentManager = getSupportFragmentManager();
+//        fragmentManager
+//                .beginTransaction()
+//                .replace(R.id.main_content, fragment)
+//                .commit();
+//
+//        //Close drawer
+        mDrawerLayout.closeDrawers();
+
+        //Set current title
+        setTitle(title);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+       // Sponsor sponsor = (Sponsor) parent.getItemAtPosition(position);
+
+        Intent intent = new Intent(DashBoardActivity.this, SponsorSelectionActivity.class);
+        startActivity(intent);
+
     }
 }

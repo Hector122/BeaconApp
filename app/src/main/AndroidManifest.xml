@@ -62,6 +62,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activists.SponsorSelectionActivity"
+            android:parentActivityName=".activists.DashBoardActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.app.beacon" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
 
     </application>

@@ -19,14 +19,12 @@
     <!-- information messages -->
     <string name="information_email_forgot_password">"We'll send you a code to this email andres to used for reset your password."</string>
 
-
     <string name="forgot_password">Forgot password ?</string>
     <string name="permission_rationale">Contacts permissions are needed for providing email completions.</string>
     <string name="text_example_message_long">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</string>
     <string name="text_example_title_short">Lorem ipsum</string>
 
     <string name="email_example">email@example.com.do</string>
-
 
     <!-- Nav. Drawer -->
     <string name="item_home">Home</string>
@@ -36,11 +34,7 @@
     <string name="sub_item_title">Configuration</string>
     <string name="sub_item_logout">logout</string>
 
-    <!-- check and delete this -->
-    <string-array name="planets_array">
-        <item>item one</item>
-        <item>item two</item>
-        <item>item three</item>
-        <item>item four</item>
-    </string-array>
+    <string name="menu_settings">Settings</string>
+
+
 </resources>

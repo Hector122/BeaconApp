@@ -13,7 +13,7 @@
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="match_parent" />-->
 
-    <include layout="@layout/test_main_content"/>
+    <include layout="@layout/category_content"/>
 
     <!-- The navigation View -->
     <android.support.design.widget.NavigationView

@@ -2,10 +2,10 @@
 
     <!-- Base application theme. -->
 
-    <style name="AppTheme" parent="Base.AppTheme"/>
+    <style name="AppTheme" parent="Base.AppTheme" />
 
     <style name="Base.AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
+        <!-- Customize material design theme. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -84,6 +84,13 @@
         <item name="android:textColorPrimary">@color/white</item>
         <item name="android:textColorSecondary">@color/white</item>
         <item name="actionMenuTextColor">@color/white</item>
+    </style>
+
+    <!-- Divider white color -->
+    <style name="DividerWhite">
+        <item name="android:layout_width">150dp</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/white</item>
     </style>
 
 
