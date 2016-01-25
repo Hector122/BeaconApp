@@ -1,10 +1,13 @@
 package com.example.hectorcastillo.beacon.activists;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcel;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 import com.example.hectorcastillo.beacon.R;
 import com.example.hectorcastillo.beacon.adapters.SponsorAdapter;
@@ -62,13 +65,22 @@ public class SponsorSelectionActivity extends AppCompatActivity {
         List<Sponsor> list = new ArrayList<>();
 
         for (int i = 0; i < 6; i++) {
-            list.add(new Sponsor("Text Title " + String.valueOf(i),
-                    "26, January", "Health & fitness",
-                    R.drawable.category_men_lifestyle_625x300));
+            Sponsor sponsor = new Sponsor();
+            sponsor.setTextTitle("Text Title " + String.valueOf(i));
+            sponsor.setTextDateFormat("26, January");
+            sponsor.setTextCategory("Health & fitness");
+            sponsor.setIdSponsorImage(R.drawable.category_men_lifestyle_625x300);
+
+            list.add(sponsor);
+
+//            list.add(new Sponsor("Text Title " + String.valueOf(i),
+//                    "26, January", "Health & fitness",
+//                    R.drawable.category_men_lifestyle_625x300));
         }
 
         //Set the adapter
         mAdapter = new SponsorAdapter(list);
         mRecyclerView.setAdapter(mAdapter);
+
     }
 }

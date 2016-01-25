@@ -1,22 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_vertical"
-    android:orientation="vertical">
+    android:fitsSystemWindows="true">
 
-    <include layout="@layout/toolbar" />
-
-    <GridView
-        android:id="@+id/grid_view"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:columnWidth="120dp"
-        android:elevation="4dp"
-        android:gravity="center"
-        android:horizontalSpacing="10dp"
-        android:layout_margin="10dp"
-        android:numColumns="2"
-        android:verticalSpacing="10dp" />
+        android:gravity="center_vertical"
+        android:orientation="vertical">
 
-</LinearLayout>
+        <include layout="@layout/toolbar" />
+
+        <GridView
+            android:id="@+id/grid_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:columnWidth="120dp"
+            android:elevation="4dp"
+            android:gravity="center"
+            android:horizontalSpacing="10dp"
+            android:numColumns="2"
+            android:verticalSpacing="10dp" />
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

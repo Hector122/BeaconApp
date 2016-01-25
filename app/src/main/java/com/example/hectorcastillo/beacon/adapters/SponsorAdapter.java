@@ -1,5 +1,7 @@
 package com.example.hectorcastillo.beacon.adapters;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.hectorcastillo.beacon.R;
+import com.example.hectorcastillo.beacon.activists.SponsorDetailActivity;
 import com.example.hectorcastillo.beacon.sponsor.Sponsor;
 
 import java.util.List;
@@ -22,6 +25,7 @@ public class SponsorAdapter extends RecyclerView.Adapter<SponsorAdapter.ViewHold
     //ViewHolder patters for better performance.
     public static class ViewHolder extends RecyclerView.ViewHolder {
         //item fields
+        public View viewHolder;
         public ImageView image;
         public TextView title;
         public TextView timeReceive;
@@ -29,6 +33,7 @@ public class SponsorAdapter extends RecyclerView.Adapter<SponsorAdapter.ViewHold
 
         public ViewHolder(View view) {
             super(view);
+            viewHolder = view;
             image = (ImageView) view.findViewById(R.id.image_sponsor);
             title = (TextView) view.findViewById(R.id.title_sponsor);
             timeReceive = (TextView) view.findViewById(R.id.time_receive_sponsor);
@@ -47,6 +52,7 @@ public class SponsorAdapter extends RecyclerView.Adapter<SponsorAdapter.ViewHold
 
     /**
      * Return the size of the list
+     *
      * @return
      */
     @Override
@@ -55,7 +61,8 @@ public class SponsorAdapter extends RecyclerView.Adapter<SponsorAdapter.ViewHold
     }
 
     /**
-     *  This method is called when the custom ViewHolder needs to be initialized
+     * This method is called when the custom ViewHolder needs to be initialized
+     *
      * @param parent
      * @param viewType
      * @return ViewHolder object.
@@ -70,16 +77,30 @@ public class SponsorAdapter extends RecyclerView.Adapter<SponsorAdapter.ViewHold
     }
 
     /***
-     *  Specify the contents of each item of the RecyclerView
+     * Specify the contents of each item of the RecyclerView
      *
      * @param holder
      * @param position
      */
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
+//set the view data source.
         holder.title.setText(sponsorList.get(position).getTextTitle());
         holder.timeReceive.setText(sponsorList.get(position).getTextDateFormat());
         holder.category.setText(sponsorList.get(position).getTextCategory());
         holder.image.setImageResource(sponsorList.get(position).getIdSponsorImage());
+
+        holder.viewHolder.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                final Context context = v.getContext();
+                Intent intent = new Intent(context, SponsorDetailActivity.class);
+                intent.putExtra(SponsorDetailActivity.EXTRA_PARAM_ID,
+                        sponsorList.get(position));
+
+                context.startActivity(intent);
+            }
+        });
     }
 }
