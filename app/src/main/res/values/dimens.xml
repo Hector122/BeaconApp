@@ -9,6 +9,8 @@
     <dimen name="icon_profile_image_size">64dp</dimen>
     <dimen name="icon_margin_left">16dp</dimen>
 
+    <dimen name="card_margin">16dp</dimen>
+
     <!-- Login -->
     <dimen name="login_button_text_size">18sp</dimen>
 </resources>
