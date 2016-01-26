@@ -16,7 +16,6 @@ import android.widget.GridView;
 
 import com.example.hectorcastillo.beacon.R;
 import com.example.hectorcastillo.beacon.adapters.CategoryAdapter;
-import com.example.hectorcastillo.beacon.sponsor.Sponsor;
 
 /**
  * Created by hector castillo on 12/1/16.
@@ -62,7 +61,6 @@ public class DashBoardActivity extends AppCompatActivity
     private void setCategoryAdapter() {
         mAdapter = new CategoryAdapter(this);
         mGridView.setAdapter(mAdapter);
-
         mGridView.setOnItemClickListener(this);
     }
 
@@ -114,19 +112,7 @@ public class DashBoardActivity extends AppCompatActivity
     }
 
     private void selectItem(String title) {
-        // Send title like argument to the fragment
-//        Bundle args = new Bundle();
-//        args.putString(PlaceholderFragment.ARG_SECTION_TITLE, title);
-//
-//        Fragment fragment = PlaceholderFragment.newInstance(title);
-//        fragment.setArguments(args);
-//        FragmentManager fragmentManager = getSupportFragmentManager();
-//        fragmentManager
-//                .beginTransaction()
-//                .replace(R.id.main_content, fragment)
-//                .commit();
-//
-//        //Close drawer
+      //Close drawer
         mDrawerLayout.closeDrawers();
 
         //Set current title

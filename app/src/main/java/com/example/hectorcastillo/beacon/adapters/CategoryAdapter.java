@@ -40,22 +40,43 @@ public class CategoryAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder holder;
+
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.
                     getSystemService(context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.category_grid_item, parent, false);
+
+            // initialize the view holder
+            holder = new ViewHolder();
+
+            //get the reference view
+            holder.image = (ImageView) convertView.findViewById(R.id.category_image);
+            holder.name = (TextView) convertView.findViewById(R.id.category_name);
+            convertView.setTag(holder);
+
+        } else {
+            holder = (ViewHolder) convertView.getTag();
         }
 
-        final ImageView categoryImage = (ImageView) convertView.findViewById(R.id.category_image);
-        final TextView categoryName = (TextView) convertView.findViewById(R.id.category_name);
-
+        //get the item to
         final SponsorCategory item = getItem(position);
-        categoryName.setText(item.getName());
-        Glide.with(categoryImage.getContext())
+
+        holder.name.setText(item.getName());
+        Glide.with(holder.image.getContext())
                 .load(item.getIdDrawable())
-                .into(categoryImage);
+                .crossFade(300)
+                .into(holder.image);
+
 
         return convertView;
+    }
+
+    public class ViewHolder {
+        TextView name;
+        ImageView image;
+
+
     }
 
 }

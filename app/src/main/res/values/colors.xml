@@ -6,7 +6,7 @@
     <color name="colorAccent">#F57F17</color>
 
     <color name="window_background">#FFF5F5</color>
-    <color name="background_footer">#9000</color>
+    <color name="background_footer">#90000000</color>
 
     <!-- Generic colors -->
     <color name="black">#000000</color>

@@ -1,6 +1,7 @@
 package com.example.hectorcastillo.beacon.activists;
 
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
@@ -19,7 +20,7 @@ public class SponsorDetailActivity extends AppCompatActivity {
 
     private TextView mSponsorTitle;
     private TextView mSponsortTextDetail;
-    private ImageView mImagenExtended;
+    private ImageView mImageExtended;
     private Sponsor mSponsorItem;
 
     @Override
@@ -31,25 +32,27 @@ public class SponsorDetailActivity extends AppCompatActivity {
 
         setToolbar();
 
+        setTitleCollapse();
+
     }
 
     private void initializeVariables(){
         mSponsorItem = getIntent().getParcelableExtra(EXTRA_PARAM_ID);
 
-        mImagenExtended = (ImageView) findViewById(R.id.image_sponsor);
-
         mSponsorTitle = (TextView) findViewById(R.id.title_sponsor);
 
         mSponsortTextDetail = (TextView) findViewById(R.id.text_sponsor_detail);
+
+        mImageExtended = (ImageView) findViewById(R.id.image_sponsor);
 
         loadImageExtended();
     }
 
 
     private void loadImageExtended() {
-        Glide.with(mImagenExtended.getContext())
+        Glide.with(mImageExtended.getContext())
                 .load(mSponsorItem.getIdSponsorImage())
-                .into(mImagenExtended);
+                .into(mImageExtended);
     }
 
 
@@ -63,6 +66,13 @@ public class SponsorDetailActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             // Providing back navigation.
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         }
+    }
+
+    private void setTitleCollapse(){
+        CollapsingToolbarLayout collapse =
+                (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+        collapse.setTitle("Text Title."); // Change title.
     }
 }
