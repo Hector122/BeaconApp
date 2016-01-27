@@ -49,6 +49,7 @@ public class DashBoardActivity extends AppCompatActivity
 
     private void initializeVariables() {
         mGridView = (GridView) findViewById(R.id.grid_view);
+        mGridView.setDrawSelectorOnTop(true);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 

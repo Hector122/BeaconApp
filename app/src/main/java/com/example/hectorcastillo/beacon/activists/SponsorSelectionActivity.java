@@ -1,13 +1,12 @@
 package com.example.hectorcastillo.beacon.activists;
 
-import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Parcel;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 
 import com.example.hectorcastillo.beacon.R;
 import com.example.hectorcastillo.beacon.adapters.SponsorAdapter;
@@ -21,8 +20,13 @@ import java.util.List;
  */
 public class SponsorSelectionActivity extends AppCompatActivity {
     //Global instance.
-    RecyclerView mRecyclerView;
-    RecyclerView.Adapter mAdapter;
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+
+    //Swipe Refresh
+   private SwipeRefreshLayout mSwipeRefreshLayout;
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,6 +38,13 @@ public class SponsorSelectionActivity extends AppCompatActivity {
         setToolbar();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+
+    }
+
     private void initializeVariables() {
         //Get the recycler view
         mRecyclerView = (RecyclerView) findViewById(R.id.recycle_view);
@@ -42,6 +53,12 @@ public class SponsorSelectionActivity extends AppCompatActivity {
         //Use manager for the Linear layout
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
+
+        //Get the refreshLayout
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
+
+        //Set Refresh listener
+        mSwipeRefreshLayout.setOnRefreshListener(new MyOnRefreshListeners());
 
         //Create a new Adapter
         setSponsorAdapter();
@@ -81,6 +98,40 @@ public class SponsorSelectionActivity extends AppCompatActivity {
         //Set the adapter
         mAdapter = new SponsorAdapter(list);
         mRecyclerView.setAdapter(mAdapter);
+
+    }
+
+
+    class MyOnRefreshListeners implements SwipeRefreshLayout.OnRefreshListener{
+
+        @Override
+        public void onRefresh() {
+            new HackingBackgroundTask().execute();
+        }
+    }
+
+    /***
+     *
+     */
+
+    private class HackingBackgroundTask extends AsyncTask<Void, Void, Boolean> {
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+
+            try {
+                Thread.sleep(3000);
+                return true;
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(Boolean result) {
+            mSwipeRefreshLayout.setRefreshing(false);
+        }
 
     }
 }

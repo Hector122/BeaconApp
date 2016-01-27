@@ -39,7 +39,7 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
 
     }
 
-    private void setToolbar(){
+    private void setToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -58,7 +58,7 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
 
     @Override
     public void onClick(View v) {
-        new SendEmailCode().execute();
+            new SendEmailCode().execute();
     }
 
 
@@ -89,5 +89,4 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
 
         }
     }
-
 }
