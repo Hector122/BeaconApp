@@ -16,29 +16,34 @@ import android.widget.GridView;
 
 import com.example.hectorcastillo.beacon.R;
 import com.example.hectorcastillo.beacon.adapters.CategoryAdapter;
+import com.example.hectorcastillo.beacon.helper.ParseConfig;
+import com.example.hectorcastillo.beacon.helper.PrefereceManager;
 
 /**
  * Created by hector castillo on 12/1/16.
  */
 public class DashBoardActivity extends AppCompatActivity
         implements AdapterView.OnItemClickListener {
-
     private DrawerLayout mDrawerLayout;
     private String mDrawerTitle;
 
     private GridView mGridView;
     private CategoryAdapter mAdapter;
 
+    private PrefereceManager mPreferenceManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        //set toolbar like action bar.
-        setToolbar();
         // set the corresponding view.
         initializeVariables();
-        //
+
+        //set toolbar like action bar.
+        setToolbar();
+
+        //Initialize the adapter
         setCategoryAdapter();
 
         mDrawerTitle = getResources().getString(R.string.item_home);
@@ -48,6 +53,10 @@ public class DashBoardActivity extends AppCompatActivity
     }
 
     private void initializeVariables() {
+        //Register device in Parse.
+        ParseConfig.parseConfiguration(this);
+
+        //Get the references for the views
         mGridView = (GridView) findViewById(R.id.grid_view);
         mGridView.setDrawSelectorOnTop(true);
 
@@ -57,6 +66,21 @@ public class DashBoardActivity extends AppCompatActivity
         if (navigationView != null) {
             setupDrawerContent(navigationView);
         }
+    }
+
+    private void registerDeviceInParse(){
+       //TODO: checkec
+       // String emailIntent = getIntent().getStringExtra(LoginActivity.EXTRA_EMAIL);
+//        String email;
+//        if(mPreferenceManager.getEmail() != null){
+//            String  emailIntent =  mPreferenceManager.getEmail();
+//            email = (emailIntent == null) ? "example@test.com.do" : emailIntent ;
+//        }
+//        String  emailIntent =  mPreferenceManager.getEmail();
+//        String email = (emailIntent == null) ? "example@test.com.do" : emailIntent ;
+
+       // ParseConfig.parseConfiguration(this);
+       // ParseConfig.subscribeWithEmail(email);
     }
 
     private void setCategoryAdapter() {

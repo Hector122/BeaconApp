@@ -42,6 +42,14 @@ public class SponsorAdapter extends RecyclerView.Adapter<SponsorAdapter.ViewHold
     }
 
     /**
+     * remove all element in the recycler
+     */
+    public void clear() {
+        sponsorList.clear();
+        notifyDataSetChanged();
+    }
+
+    /**
      * Constructor.
      *
      * @param sponsorList list of sponsor with the information need.
@@ -84,7 +92,7 @@ public class SponsorAdapter extends RecyclerView.Adapter<SponsorAdapter.ViewHold
      */
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-//set the view data source.
+        //set the view data source.
         holder.title.setText(sponsorList.get(position).getTextTitle());
         holder.timeReceive.setText(sponsorList.get(position).getTextDateFormat());
         holder.category.setText(sponsorList.get(position).getTextCategory());

@@ -1,4 +1,4 @@
-package com.example.hectorcastillo.beacon.utilitys;
+package com.example.hectorcastillo.beacon.helper;
 
 import android.app.Activity;
 import android.content.Context;

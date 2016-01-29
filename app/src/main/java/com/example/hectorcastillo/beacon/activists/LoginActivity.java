@@ -15,7 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.hectorcastillo.beacon.R;
-import com.example.hectorcastillo.beacon.utilitys.HelperUtil;
+import com.example.hectorcastillo.beacon.helper.HelperUtil;
 import com.example.hectorcastillo.beacon.utilitys.Validations;
 
 import java.util.List;
@@ -194,6 +194,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
 
     private void startDashBoardCategoryActivity() {
         Intent intent = new Intent(this, DashBoardActivity.class);
+        intent.putExtra(EXTRA_EMAIL, mEmailView.getText().toString());
         startActivity(intent);
 
         finish();
