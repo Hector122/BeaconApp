@@ -5,19 +5,28 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 
 import com.example.hectorcastillo.beacon.R;
+import com.example.hectorcastillo.beacon.asynctask.HelperAsync;
+import com.example.hectorcastillo.beacon.asynctask.SimulateAsyncTask;
+import com.example.hectorcastillo.beacon.utilitys.Validations;
 
 /**
  * Created by hector castillo on 15/1/16.
  */
-public class ForgotPasswordActivity extends AppCompatActivity implements View.OnClickListener {
+public class ForgotPasswordActivity extends AppCompatActivity
+        implements View.OnClickListener {
+    //Reference to email View
     AutoCompleteTextView mEmailView;
+
+    //Reference to continue button view
     Button mContinueButton;
 
+    //Reference to the email editText in the login
     String mEmailAddress;
 
     @Override
@@ -55,38 +64,44 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
         }
     }
 
-
     @Override
     public void onClick(View v) {
-            new SendEmailCode().execute();
-    }
+        mEmailView.setError(null);
+        final String email = mEmailView.getText().toString();
 
+        Boolean cancel = false;
 
-    private class SendEmailCode extends AsyncTask<Void, Void, Boolean> {
-        ProgressDialog mProgressDialog;
+        if (TextUtils.isEmpty(email)) {
+            mEmailView.setError(getString(R.string.error_field_required));
+            cancel = true;
 
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-            mProgressDialog = ProgressDialog.show(ForgotPasswordActivity.this, "Title title", "loading messages", true);
+        } else if (!Validations.isEmailValid(email)) {
+            mEmailView.setError(getString(R.string.error_invalid_email));
+            cancel = true;
         }
 
-        @Override
-        protected Boolean doInBackground(Void... params) {
-
-            try {
-                Thread.sleep(4000);
-                return true;
-            } catch (InterruptedException e) {
-                return false;
-            }
-        }
-
-        @Override
-        protected void onPostExecute(Boolean success) {
-            mProgressDialog.dismiss();
-
+        if (cancel) {
+            mEmailView.requestFocus();
+        } else {
+            starTaskSimulation();
         }
     }
+
+    private void starTaskSimulation() {
+        String title = getString(R.string.dummy_title_email);
+        String message = getString(R.string.dummy_message_wait);
+
+        //Initialise the Helper
+        HelperAsync helper = new HelperAsync(title, message, ForgotPasswordActivity.this);
+
+        //Begin the simulation task.
+        new SimulateAsyncTask(helper).execute();
+
+       // finish();
+    }
+
+//    private void showSuccessTask(){
+//        ProgressDialog dialog = new ProgressDialog();
+//
+//    }
 }

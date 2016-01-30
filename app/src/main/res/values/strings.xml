@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">Beacon</string>
 
+    <!--Dummy title and message for the task simulation. -->
+    <string name="dummy_message_wait">Please waite...</string>
+    <string name="dummy_title_email">Reset your password.</string>
+    <string name="dummy_title_login">Checking your credentials.</string>
+    <string name="dummy_title_register">Register your information.</string>
+
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -12,6 +18,7 @@
     <!--Error messages -->
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
+    <string name="error_invalid_password_confirmation">The password and confirmation are difference</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
     <string name="error_not_internet_connection">"You don't have internet connection." </string>

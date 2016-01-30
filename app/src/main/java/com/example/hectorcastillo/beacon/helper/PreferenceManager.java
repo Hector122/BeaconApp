@@ -7,7 +7,7 @@ import android.content.SharedPreferences.Editor;
 /**
  * Created by hector castillo on 28/1/16.
  */
-public class PrefereceManager {
+public class PreferenceManager {
     //Share Preferences.
     SharedPreferences preferences;
 
@@ -31,7 +31,7 @@ public class PrefereceManager {
 
     public static final String KEY_PASSWORD = "password";
 
-    public PrefereceManager(Context context) {
+    public PreferenceManager(Context context) {
         this.context = context;
         preferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         editor = preferences.edit();

@@ -5,4 +5,5 @@ package com.example.hectorcastillo.beacon.utilitys;
  */
 public class ActivityConstans {
 
+
 }

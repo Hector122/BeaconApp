@@ -3,16 +3,20 @@ package com.example.hectorcastillo.beacon.activists;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
 import com.example.hectorcastillo.beacon.R;
+import com.example.hectorcastillo.beacon.utilitys.ActivityConstans;
 
 /**
  * Created by hector castillo on 12/1/16.
  */
 public class MainActivity extends Activity implements OnClickListener {
+    public static final int MAIN_CLOSED_REQUEST_CODE = 1;
+
     //Reference to login and Register button views.
     private Button mButtonLogin;
     private Button mButtonRegister;
@@ -23,6 +27,19 @@ public class MainActivity extends Activity implements OnClickListener {
         setContentView(R.layout.activity_main);
 
         initializeVariables();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if((requestCode == MAIN_CLOSED_REQUEST_CODE)
+                && ( resultCode == RESULT_OK)){
+
+            finish();
+            //TODO: delete
+            Log.i("MainActivty", "Close main activity");
+        }
     }
 
     /**
@@ -61,6 +78,6 @@ public class MainActivity extends Activity implements OnClickListener {
                 break;
         }
 
-        startActivity(intent);
+        startActivityForResult(intent, MAIN_CLOSED_REQUEST_CODE);
     }
 }

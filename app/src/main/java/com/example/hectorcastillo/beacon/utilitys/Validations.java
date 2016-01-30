@@ -1,10 +1,16 @@
 package com.example.hectorcastillo.beacon.utilitys;
 
+import android.text.TextUtils;
+import android.view.View;
+
 /**
  * Created by hector castillo on 13/1/16.
  */
 public class Validations {
 
+    public static boolean isNullOrEmpty(String stringText){
+        return TextUtils.isEmpty(stringText);
+    }
 
     /***
      * Validate email

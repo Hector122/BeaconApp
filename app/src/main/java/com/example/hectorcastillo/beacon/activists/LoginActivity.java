@@ -1,5 +1,6 @@
 package com.example.hectorcastillo.beacon.activists;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -28,6 +29,8 @@ import java.util.List;
 public class LoginActivity extends AppCompatActivity implements OnClickListener {
     public static final String EXTRA_EMAIL = "com.example.beacon.EMAIL";
     public static final String STATE_EMAIL = "UserEmailInput";
+
+    //TODO:Request code for LOGIN.
 
     // Id to identity READ_CONTACTS permission request.
     // private static final int REQUEST_READ_CONTACTS = 0;
@@ -118,8 +121,8 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
         switch (view.getId()) {
             case R.id.password:
             case R.id.email_sign_in_button:
-               startDashBoardCategoryActivity();
-               // attemptLogin();
+              // startDashBoardCategoryActivity();
+                attemptLogin();
                 break;
 
             case R.id.text_forgot_password:
@@ -150,7 +153,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
         View focusView = null;
 
         // Check for a valid email address.
-        if (TextUtils.isEmpty(email)) {
+        if (Validations.isNullOrEmpty(email)) {
             mEmailView.setError(getString(R.string.error_field_required));
             focusView = mEmailView;
             cancel = true;
@@ -161,7 +164,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
             cancel = true;
 
             // Check for a valid password, if the user entered one.
-        } else if (TextUtils.isEmpty(password)) {
+        } else if (Validations.isNullOrEmpty(password)) {
             mPasswordView.setError(getString(R.string.error_field_required));
             focusView = mPasswordView;
             cancel = true;
@@ -177,8 +180,11 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
             // form field with an error.
             focusView.requestFocus();
         } else {
-            mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute();
+            startDashBoardCategoryActivity();
+
+            //TODO: this comment this
+            //mAuthTask = new UserLoginTask(email, password);
+            //mAuthTask.execute();
         }
     }
 
@@ -195,6 +201,8 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
     private void startDashBoardCategoryActivity() {
         Intent intent = new Intent(this, DashBoardActivity.class);
         intent.putExtra(EXTRA_EMAIL, mEmailView.getText().toString());
+        setResult(RESULT_OK);
+
         startActivity(intent);
 
         finish();
@@ -258,6 +266,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
         //TODO: remove when tere was a real connection
         private final String mEmail;
         private final String mPassword;
+        ProgressDialog mProgressDialog;
 
         UserLoginTask(String email, String password) {
             mEmail = email;
@@ -269,7 +278,12 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
         protected void onPreExecute() {
             super.onPreExecute();
             // show the progress bar
-            mProgressView.setVisibility(View.VISIBLE);
+           // mProgressView.setVisibility(View.VISIBLE);
+
+            mProgressDialog = ProgressDialog.show(LoginActivity.this,
+                    getString(R.string.dummy_title_login),
+                    getString(R.string.dummy_message_wait),
+                    true);
 
             setInvisbleForm(mEmailSignInButton, mForgotPasswordView,
                     mPasswordView, mEmailView);
@@ -293,19 +307,22 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
 
         @Override
         protected void onPostExecute(final Boolean success) {
-            mProgressView.setVisibility(View.GONE);
+          //  mProgressView.setVisibility(View.GONE);
+            mProgressDialog.dismiss();
 
-            if (success) {
-                //TODO: login successful
-                finish();
+            startDashBoardCategoryActivity();
 
-            } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
-
-                setVisibilityForm(mEmailSignInButton, mForgotPasswordView,
-                        mPasswordView, mEmailView);
-            }
+//            if (success) {
+//                //TODO: login successful
+//                finish();
+//
+//            } else {
+//                mPasswordView.setError(getString(R.string.error_incorrect_password));
+//                mPasswordView.requestFocus();
+//
+//                setVisibilityForm(mEmailSignInButton, mForgotPasswordView,
+//                        mPasswordView, mEmailView);
+//            }
         }
 
         @Override

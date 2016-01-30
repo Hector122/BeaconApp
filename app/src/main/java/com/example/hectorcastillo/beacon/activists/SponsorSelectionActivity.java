@@ -118,7 +118,6 @@ public class SponsorSelectionActivity extends AppCompatActivity {
 
         @Override
         protected Boolean doInBackground(Void... params) {
-
             try {
                 Thread.sleep(3000);
                 return true;

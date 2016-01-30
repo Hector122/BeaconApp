@@ -1,5 +1,6 @@
 package com.example.hectorcastillo.beacon.helper;
 
+import android.app.Application;
 import android.content.Context;
 import android.util.Log;
 
@@ -10,8 +11,13 @@ import com.parse.ParseInstallation;
 /**
  * Created by hector castillo on 29/1/16.
  */
-public class ParseConfig {
+public class ParseConfig extends Application {
     private static String TAG = ParseConfig.class.getSimpleName();
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+    }
 
     /**
      * Register the mobil in Parse.
@@ -27,7 +33,6 @@ public class ParseConfig {
      *
      * @param email
      */
-
     public static void subscribeWithEmail(String email) {
         ParseInstallation installation = ParseInstallation.getCurrentInstallation();
 

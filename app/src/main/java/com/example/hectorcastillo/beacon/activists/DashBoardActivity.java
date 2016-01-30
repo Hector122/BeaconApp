@@ -17,7 +17,7 @@ import android.widget.GridView;
 import com.example.hectorcastillo.beacon.R;
 import com.example.hectorcastillo.beacon.adapters.CategoryAdapter;
 import com.example.hectorcastillo.beacon.helper.ParseConfig;
-import com.example.hectorcastillo.beacon.helper.PrefereceManager;
+import com.example.hectorcastillo.beacon.helper.PreferenceManager;
 
 /**
  * Created by hector castillo on 12/1/16.
@@ -30,7 +30,7 @@ public class DashBoardActivity extends AppCompatActivity
     private GridView mGridView;
     private CategoryAdapter mAdapter;
 
-    private PrefereceManager mPreferenceManager;
+    private PreferenceManager mPreferenceManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
