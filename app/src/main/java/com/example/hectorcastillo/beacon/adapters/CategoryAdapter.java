@@ -75,8 +75,5 @@ public class CategoryAdapter extends BaseAdapter {
     public class ViewHolder {
         TextView name;
         ImageView image;
-
-
     }
-
 }

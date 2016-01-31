@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import com.example.hectorcastillo.beacon.R;
 import com.example.hectorcastillo.beacon.adapters.CategoryAdapter;
@@ -24,6 +25,8 @@ import com.example.hectorcastillo.beacon.helper.PreferenceManager;
  */
 public class DashBoardActivity extends AppCompatActivity
         implements AdapterView.OnItemClickListener {
+    public static final String EXTRA_DRAWABLE_ID = "app.android.beacon.image";
+
     private DrawerLayout mDrawerLayout;
     private String mDrawerTitle;
 
@@ -43,6 +46,9 @@ public class DashBoardActivity extends AppCompatActivity
         //set toolbar like action bar.
         setToolbar();
 
+        //Register email address in parse.
+        registerEmailInParse();
+
         //Initialize the adapter
         setCategoryAdapter();
 
@@ -53,14 +59,13 @@ public class DashBoardActivity extends AppCompatActivity
     }
 
     private void initializeVariables() {
-        //Register device in Parse.
-        ParseConfig.parseConfiguration(this);
-
         //Get the references for the views
         mGridView = (GridView) findViewById(R.id.grid_view);
         mGridView.setDrawSelectorOnTop(true);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        mPreferenceManager = new PreferenceManager(this);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         if (navigationView != null) {
@@ -68,19 +73,15 @@ public class DashBoardActivity extends AppCompatActivity
         }
     }
 
-    private void registerDeviceInParse(){
-       //TODO: checkec
-       // String emailIntent = getIntent().getStringExtra(LoginActivity.EXTRA_EMAIL);
-//        String email;
-//        if(mPreferenceManager.getEmail() != null){
-//            String  emailIntent =  mPreferenceManager.getEmail();
-//            email = (emailIntent == null) ? "example@test.com.do" : emailIntent ;
-//        }
-//        String  emailIntent =  mPreferenceManager.getEmail();
-//        String email = (emailIntent == null) ? "example@test.com.do" : emailIntent ;
+    private void registerEmailInParse() {
+        //TODO:  Check this.
+        String emailFromIntent = getIntent().getStringExtra(LoginActivity.EXTRA_EMAIL);
+        String email = (emailFromIntent == null) ? "example@test.com.do" : emailFromIntent;
 
-       // ParseConfig.parseConfiguration(this);
-       // ParseConfig.subscribeWithEmail(email);
+        //
+        mPreferenceManager.createLoginSession(email, "password");
+        //
+        ParseConfig.subscribeWithEmail(email);
     }
 
     private void setCategoryAdapter() {
@@ -134,10 +135,17 @@ public class DashBoardActivity extends AppCompatActivity
                     }
                 }
         );
+//TODO: set the email form the intent
+        TextView emailNavigationView = (TextView) navigationView.findViewById(R.id.nav_email_text_view);
+
+//
+//        if (mPreferenceManager.isLoggeIn() && mPreferenceManager.getEmail() != null) {
+//            emailNavigationView.setText(mPreferenceManager.getEmail());
+//        }
     }
 
     private void selectItem(String title) {
-      //Close drawer
+        //Close drawer
         mDrawerLayout.closeDrawers();
 
         //Set current title
@@ -145,11 +153,9 @@ public class DashBoardActivity extends AppCompatActivity
     }
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-       // Sponsor sponsor = (Sponsor) parent.getItemAtPosition(position);
-
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id){
         Intent intent = new Intent(DashBoardActivity.this, SponsorSelectionActivity.class);
+        intent.putExtra(EXTRA_DRAWABLE_ID, mAdapter.getItem(position).getIdDrawable());
         startActivity(intent);
-
     }
 }

@@ -13,7 +13,6 @@ public class Sponsor implements Parcelable {
     private String textCategory;
     private int idSponsorImage;
 
-
     public Sponsor (){
 
     }

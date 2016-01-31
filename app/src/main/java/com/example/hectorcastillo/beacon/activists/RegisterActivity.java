@@ -1,6 +1,8 @@
 package com.example.hectorcastillo.beacon.activists;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -61,6 +63,15 @@ implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         attemptLogin();
+    }
+
+    private void startDashBoardCategoryActivity() {
+        Intent intent = new Intent(this, DashBoardActivity.class);
+        intent.putExtra(LoginActivity.EXTRA_EMAIL, mEmailView.getText().toString());
+        setResult(Activity.RESULT_OK);
+
+        startActivity(intent);
+        finish();
     }
 
     /**
@@ -126,8 +137,13 @@ implements View.OnClickListener {
             HelperAsync helper = new HelperAsync(title, message, RegisterActivity.this);
 
             //Begin the simulation task.
-            new SimulateAsyncTask(helper).execute();
+           SimulateAsyncTask task = new SimulateAsyncTask(helper);
+            task.execute();
 
+            while(task.getStatus() != AsyncTask.Status.RUNNING){
+                startDashBoardCategoryActivity();
+                break;
+            }
 
            // startDashBoardCategoryActivity();
 
@@ -136,6 +152,9 @@ implements View.OnClickListener {
             //mAuthTask.execute();
         }
     }
+
+
+
 
 
 

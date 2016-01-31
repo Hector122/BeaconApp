@@ -51,15 +51,15 @@ public class SimulateAsyncTask extends AsyncTask<Void, Void, Boolean> {
             Activity activity = (Activity)mHelper.getContext();
             activity.finish();
         }else {
-            startDashBoardCategoryActivity();
+           // startDashBoardCategoryActivity();
         }
     }
 
-   private void startDashBoardCategoryActivity() {
-       Activity activity = (Activity) mHelper.getContext();
+    private void startDashBoardCategoryActivity() {
+        Activity activity = (Activity) mHelper.getContext();
         Intent intent = new Intent(mHelper.getContext(), DashBoardActivity.class);
-       // intent.putExtra(LoginActivity.EXTRA_EMAIL, mEmailView.getText().toString());
-       intent.putExtra(LoginActivity.EXTRA_EMAIL,"Test@email.com");
+        // intent.putExtra(LoginActivity.EXTRA_EMAIL, mEmailView.getText().toString());
+        intent.putExtra(LoginActivity.EXTRA_EMAIL,"Test@email.com");
         activity.setResult(Activity.RESULT_OK);
 
         activity.startActivity(intent);

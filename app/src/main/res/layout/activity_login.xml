@@ -18,7 +18,7 @@
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/toolbar"/>
+        layout="@layout/toolbar" />
 
     <LinearLayout
         android:id="@+id/login_form_container"
@@ -77,15 +77,14 @@
             style="@style/LongBlueActionButton"
             android:text="@string/action_sign_in" />
 
-
         <TextView
             android:id="@+id/text_forgot_password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_height="20dp"
+            android:gravity="center_horizontal"
             android:text="@string/forgot_password"
             android:textSize="14sp" />
 
     </LinearLayout>
-
 
 </RelativeLayout>

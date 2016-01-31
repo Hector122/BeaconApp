@@ -11,19 +11,15 @@ import com.parse.ParseInstallation;
 /**
  * Created by hector castillo on 29/1/16.
  */
-public class ParseConfig extends Application {
+public class ParseConfig {
     private static String TAG = ParseConfig.class.getSimpleName();
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-    }
+    private static final String EMAIL_ADDRESS = "email";
 
     /**
      * Register the mobil in Parse.
      * @param context
      */
-    public static void parseConfiguration(Context context){
+    public static void registerParse(Context context){
         // initializing parse library
         Parse.initialize(context, AppConfig.PARSE_APPLICATION_ID, AppConfig.PARSE_CLIENT_KEY);
         ParseInstallation.getCurrentInstallation().saveInBackground();
@@ -36,7 +32,7 @@ public class ParseConfig extends Application {
     public static void subscribeWithEmail(String email) {
         ParseInstallation installation = ParseInstallation.getCurrentInstallation();
 
-        installation.put("email", email);
+        installation.put(EMAIL_ADDRESS, email);
 
         installation.saveInBackground();
 

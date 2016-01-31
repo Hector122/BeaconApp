@@ -21,7 +21,7 @@ public class PreferenceManager {
     int PRIVATE_MODE = 0;
 
     // Shared pref file name
-    private static final String PREF_NAME = "AndroidHive";
+    private static final String PREF_NAME = "BeaconApp";
 
     // All Shared Preferences Keys
     private static final String IS_LOGIN = "IsLoggedIn";
@@ -64,6 +64,7 @@ public class PreferenceManager {
      * @return
      */
     public Boolean isLoggeIn(){
+
         return preferences.getBoolean(IS_LOGIN, false);
     }
 

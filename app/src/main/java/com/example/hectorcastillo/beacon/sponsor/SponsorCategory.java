@@ -42,7 +42,6 @@ public class SponsorCategory {
             new SponsorCategory("Food & Drink", R.drawable.category_men_lifestyle_625x300),
             new SponsorCategory("Health & fitness", R.drawable.category_supermarket_625x300),
             new SponsorCategory("Home & garden", R.drawable.category_men_lifestyle_625x300),
-            new SponsorCategory("BMW Serie 6", R.drawable.category_supermarket_625x300),
             new SponsorCategory("Men's Lifestyle", R.drawable.category_men_lifestyle_625x300),
             new SponsorCategory("NEWS & POLITICS", R.drawable.category_cellphone_625x300),
             new SponsorCategory("SCIENCE & TECHNOLOGY", R.drawable.category_supermarket_625x300),
@@ -51,7 +50,7 @@ public class SponsorCategory {
     };
 
 
-    public static SponsorCategory getItemFROMHERE(int id) {
+    public static SponsorCategory getItem(int id) {
         for (SponsorCategory item : ITEMS) {
             if (item.getId() == id) {
                 return item;

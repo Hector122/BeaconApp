@@ -26,8 +26,6 @@ public class SponsorSelectionActivity extends AppCompatActivity {
     //Swipe Refresh
    private SwipeRefreshLayout mSwipeRefreshLayout;
 
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,13 +34,6 @@ public class SponsorSelectionActivity extends AppCompatActivity {
         initializeVariables();
 
         setToolbar();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-
     }
 
     private void initializeVariables() {
@@ -81,12 +72,15 @@ public class SponsorSelectionActivity extends AppCompatActivity {
         //TODO: now is fix, this data suppose to parse form JSON object.
         List<Sponsor> list = new ArrayList<>();
 
+       int drawableId = getIntent().getIntExtra(DashBoardActivity.EXTRA_DRAWABLE_ID, 0);
+       // R.drawable.category_men_lifestyle_625x300
+
         for (int i = 0; i < 6; i++) {
             Sponsor sponsor = new Sponsor();
             sponsor.setTextTitle("Text Title " + String.valueOf(i));
             sponsor.setTextDateFormat("26, January");
             sponsor.setTextCategory("Health & fitness");
-            sponsor.setIdSponsorImage(R.drawable.category_men_lifestyle_625x300);
+            sponsor.setIdSponsorImage(drawableId);
 
             list.add(sponsor);
 
@@ -119,7 +113,7 @@ public class SponsorSelectionActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
             try {
-                Thread.sleep(3000);
+                Thread.sleep(2000);
                 return true;
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -131,6 +125,5 @@ public class SponsorSelectionActivity extends AppCompatActivity {
         protected void onPostExecute(Boolean result) {
             mSwipeRefreshLayout.setRefreshing(false);
         }
-
     }
 }
