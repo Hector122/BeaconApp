@@ -107,7 +107,7 @@ public class SponsorAdapter extends RecyclerView.Adapter<SponsorAdapter.ViewHold
                 intent.putExtra(SponsorDetailActivity.EXTRA_PARAM_ID,
                         sponsorList.get(position));
 
-                context.startActivity(intent);
+                context.startActivity( intent);
             }
         });
     }

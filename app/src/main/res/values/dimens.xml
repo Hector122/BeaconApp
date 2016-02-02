@@ -11,6 +11,8 @@
 
     <dimen name="card_margin">16dp</dimen>
 
+    <dimen name="card_margin_maps">8dp</dimen>
+
     <!-- Login -->
     <dimen name="login_button_text_size">18sp</dimen>
 </resources>

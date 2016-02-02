@@ -9,7 +9,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 import com.example.hectorcastillo.beacon.R;
-import com.example.hectorcastillo.beacon.utilitys.ActivityConstans;
 
 /**
  * Created by hector castillo on 12/1/16.
@@ -71,7 +70,7 @@ public class MainActivity extends Activity implements OnClickListener {
                 break;
 
             case R.id.register_button:
-                intent = new Intent(this, RegisterActivity.class);
+               intent = new Intent(this, RegisterActivity.class);
                 break;
 
             default:

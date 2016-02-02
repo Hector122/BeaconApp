@@ -13,4 +13,7 @@ public class AppConfig {
     public static final String PARSE_CHANNEL = "Beacon A";
     public static final int NOTIFICATION_ID = 100;
 
+
+    //Google developers console key
+    public static final String GOOGLE_MAPS_KEY = "AIzaSyDJByRwRC_rAgGE8-yAzlbfyqdBPW31wZU";
 }

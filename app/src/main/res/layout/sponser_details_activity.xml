@@ -51,10 +51,10 @@
 
             </android.support.v7.widget.CardView>
 
-            <!-- Card Sponsored -->
+            <!-- Card Sponsored Maps preview -->
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="250dp"
                 android:layout_marginBottom="@dimen/card_margin"
                 android:layout_marginLeft="@dimen/card_margin"
                 android:layout_marginRight="@dimen/card_margin">
@@ -62,53 +62,14 @@
                 <LinearLayout
                     style="@style/Widget.CardContent"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="match_parent">
 
-                    <!-- Sponsored title -->
-                    <TextView
-                        android:id="@+id/title_sponsor_2"
+                    <!-- Sponsored maps image-->
+                    <ImageView
+                        android:id="@+id/image_map_sponsor"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/text_example_title_short"
-                        android:textSize="18sp" />
-
-                    <!-- Sponsored content-->
-                    <TextView
-                        android:id="@+id/text_sponsor_detail_2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/paragraph_example" />
-
-                </LinearLayout>
-
-            </android.support.v7.widget.CardView>
-
-            <!-- Last card view -->
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/card_margin"
-                android:layout_marginLeft="@dimen/card_margin"
-                android:layout_marginRight="@dimen/card_margin">
-
-                <LinearLayout
-                    style="@style/Widget.CardContent"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <!-- Sponsored title -->
-                    <TextView
-                        android:id="@+id/title_sponsor_3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/text_example_title_short"
-                        android:textSize="18sp" />
-
-                    <!-- Sponsored content-->
-                    <TextView
-                        android:id="@+id/text_sponsor_detail_3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
                         android:text="@string/paragraph_example" />
 
                 </LinearLayout>

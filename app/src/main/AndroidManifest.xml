@@ -8,6 +8,11 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+<!--  permission is only required for this demo in order to get the user's location -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+
     <!--
       GET_ACCOUNTS is only required for GCM on devices running Android lower than
       4.0.4. You may leave out this permission if you are targetting 4.0.4+.
@@ -25,6 +30,10 @@
     <!--permission
         android:name="com.example.hectorcastillo.beacon.permission.C2D_MESSAGE"
         android:protectionLevel="signature" /-->
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true"/>
 
     <application
         android:name=".app.MyApplication"
@@ -102,6 +111,16 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".activists.MapActivity"
+            android:parentActivityName=".activists.SponsorDetailActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.app.beacon" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
 
         <!--  Added for Parse push notifications -->
         <service android:name="com.parse.PushService" />
@@ -125,6 +144,14 @@
                 <category android:name="com.example.hectorcastillo.beacon" />
             </intent-filter>
         </receiver>
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key"/>
 
     </application>
 
