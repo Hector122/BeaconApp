@@ -37,18 +37,17 @@ public class SponsorCategory {
 
     //TODO: by know are fixed.
     public static SponsorCategory[] ITEMS = {
-            new SponsorCategory("ALL", R.drawable.category_cellphone_625x300),
-            new SponsorCategory("Entertainment", R.drawable.category_cellphone_625x300),
-            new SponsorCategory("Food & Drink", R.drawable.category_men_lifestyle_625x300),
-            new SponsorCategory("Health & fitness", R.drawable.category_supermarket_625x300),
-            new SponsorCategory("Home & garden", R.drawable.category_men_lifestyle_625x300),
-            new SponsorCategory("Men's Lifestyle", R.drawable.category_men_lifestyle_625x300),
-            new SponsorCategory("NEWS & POLITICS", R.drawable.category_cellphone_625x300),
-            new SponsorCategory("SCIENCE & TECHNOLOGY", R.drawable.category_supermarket_625x300),
-            new SponsorCategory("Especial Interes", R.drawable.category_men_lifestyle_625x300),
-            new SponsorCategory("Sport", R.drawable.category_supermarket_625x300)
+            new SponsorCategory("All", R.drawable.category_all),
+            new SponsorCategory("Entertainment", R.drawable.category_sports_entertainment),
+            new SponsorCategory("Food & Drink", R.drawable.category_food_315x215),
+            new SponsorCategory("Supermarket", R.drawable.category_supermarket_310x221),
+            new SponsorCategory("Health & fitness", R.drawable.category_health_and_fitness_325x189),
+            new SponsorCategory("Home & garden", R.drawable.category_home_and_garden_260x215),
+            new SponsorCategory("Men's Lifestyle", R.drawable.category_men_lifestyle_230x240),
+            new SponsorCategory("Women's Lifestyle",  R.drawable.category_shopping_470x220),
+            new SponsorCategory("TECHNOLOGY", R.drawable.category_thecnology),
+            new SponsorCategory("Sport", R.drawable.category_sport)
     };
-
 
     public static SponsorCategory getItem(int id) {
         for (SponsorCategory item : ITEMS) {

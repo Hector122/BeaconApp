@@ -28,7 +28,7 @@
         android:layout_marginBottom="16dp"
         android:elevation="4dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/perfil1"
+        android:src="@drawable/perfile_wifi_512x512"
         app:border_color="@android:color/white"
         app:border_width="1dp" />
 

@@ -131,18 +131,35 @@ public class DashBoardActivity extends AppCompatActivity
                         // Create a new Fragment
                         String title = menuItem.getTitle().toString();
                         selectItem(title);
+
+
+                        //TODO: put here the action to make in the navigation drawer
+
+                        switch (menuItem.getItemId()){
+
+                            case R.id.nav_sub_logout:
+                                logout();
+                                break;
+                        }
+
                         return true;
                     }
                 }
         );
-//TODO: set the email form the intent
+        //TODO: set the email form the intent
         TextView emailNavigationView = (TextView) navigationView.findViewById(R.id.nav_email_text_view);
 
-//
-//        if (mPreferenceManager.isLoggeIn() && mPreferenceManager.getEmail() != null) {
-//            emailNavigationView.setText(mPreferenceManager.getEmail());
-//        }
+        //
+        //        if (mPreferenceManager.isLoggeIn() && mPreferenceManager.getEmail() != null) {
+        //            emailNavigationView.setText(mPreferenceManager.getEmail());
+        //        }
     }
+
+    /***
+     * select name of the menu in the toolbar.
+     * @param title
+     * String with the name of
+     */
 
     private void selectItem(String title) {
         //Close drawer
@@ -157,5 +174,15 @@ public class DashBoardActivity extends AppCompatActivity
         Intent intent = new Intent(DashBoardActivity.this, SponsorSelectionActivity.class);
         intent.putExtra(EXTRA_DRAWABLE_ID, mAdapter.getItem(position).getIdDrawable());
         startActivity(intent);
+    }
+    
+    private void logout(){
+        mPreferenceManager.logout();
+
+        Intent intent = new Intent(this,
+                MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+                | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+      startActivity(intent);
     }
 }

@@ -76,7 +76,4 @@ public class PreferenceManager {
         editor.clear();
         editor.commit();
     }
-
-
-
 }
