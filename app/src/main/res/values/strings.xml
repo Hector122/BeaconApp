@@ -30,6 +30,7 @@
     <string name="permission_rationale">Contacts permissions are needed for providing email completions.</string>
     <string name="text_example_message_long">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</string>
     <string name="text_example_title_short">Lorem ipsum</string>
+    <string name="text_find_us">Find us</string>
 
     <string name="email_example">email@example.com.do</string>
 

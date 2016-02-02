@@ -58,16 +58,18 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Sydney, Australia, and move the camera.
+        //TODO: read this from JSON Object, hardcore data only for the demo.
+
         LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(GALERIA_360).title("Galeria 360"));
+        mMap.addMarker(new MarkerOptions().position(GALERIA_360).title("Galeria 360").snippet("Plaza galeria 360."));
         mMap.addMarker(new MarkerOptions().position(AGORA_MALL).title("Agora Mall"));
         mMap.addMarker(new MarkerOptions().position(DIAMOND_MALL).title("Diamond mall"));
-        mMap.addMarker(new MarkerOptions().position(SAMBIL).title("Sambil"));
+        mMap.addMarker(new MarkerOptions().position(SAMBIL).title("Sambil").snippet("Espcial en nuestras tiendas"));
 
        // mMap.moveCamera(CameraUpdateFactory.newLatLng(GALERIA_360));
         mMap.setMyLocationEnabled(true);
 
-        // Move the camera instantly to hamburg with a zoom of 15.
+        // Move the camera instantly to place market with a zoom of 15.
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(GALERIA_360, 15));
 
         // Zoom in, animating the camera.
