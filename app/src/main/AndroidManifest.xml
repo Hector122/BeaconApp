@@ -85,7 +85,7 @@
 
         <!-- TODO: change name to LAUNCHER -->
         <activity
-            android:name=".activists.DashBoardActivity"
+            android:name=".activists.CategoryActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="com.app.beacon" />
@@ -94,7 +94,7 @@
         </activity>
         <activity
             android:name=".activists.SponsorSelectionActivity"
-            android:parentActivityName=".activists.DashBoardActivity"
+            android:parentActivityName=".activists.CategoryActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="com.app.beacon" />

@@ -2,12 +2,10 @@ package com.example.hectorcastillo.beacon.asynctask;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.widget.ThemedSpinnerAdapter;
 
-import com.example.hectorcastillo.beacon.activists.DashBoardActivity;
+import com.example.hectorcastillo.beacon.activists.CategoryActivity;
 import com.example.hectorcastillo.beacon.activists.ForgotPasswordActivity;
 import com.example.hectorcastillo.beacon.activists.LoginActivity;
 
@@ -57,7 +55,7 @@ public class SimulateAsyncTask extends AsyncTask<Void, Void, Boolean> {
 
     private void startDashBoardCategoryActivity() {
         Activity activity = (Activity) mHelper.getContext();
-        Intent intent = new Intent(mHelper.getContext(), DashBoardActivity.class);
+        Intent intent = new Intent(mHelper.getContext(), CategoryActivity.class);
         // intent.putExtra(LoginActivity.EXTRA_EMAIL, mEmailView.getText().toString());
         intent.putExtra(LoginActivity.EXTRA_EMAIL,"Test@email.com");
         activity.setResult(Activity.RESULT_OK);

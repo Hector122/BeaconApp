@@ -23,7 +23,7 @@ import com.example.hectorcastillo.beacon.helper.PreferenceManager;
 /**
  * Created by hector castillo on 12/1/16.
  */
-public class DashBoardActivity extends AppCompatActivity
+public class CategoryActivity extends AppCompatActivity
         implements AdapterView.OnItemClickListener {
     public static final String EXTRA_DRAWABLE_ID = "app.android.beacon.image";
 
@@ -38,7 +38,7 @@ public class DashBoardActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard);
+        setContentView(R.layout.activity_category);
 
         // set the corresponding view.
         initializeVariables();
@@ -62,6 +62,7 @@ public class DashBoardActivity extends AppCompatActivity
         //Get the references for the views
         mGridView = (GridView) findViewById(R.id.grid_view);
         mGridView.setDrawSelectorOnTop(true);
+        //mGridView.setExpanded(true);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
@@ -171,11 +172,11 @@ public class DashBoardActivity extends AppCompatActivity
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-        Intent intent = new Intent(DashBoardActivity.this, SponsorSelectionActivity.class);
+        Intent intent = new Intent(CategoryActivity.this, SponsorSelectionActivity.class);
         intent.putExtra(EXTRA_DRAWABLE_ID, mAdapter.getItem(position).getIdDrawable());
         startActivity(intent);
     }
-    
+
     private void logout(){
         mPreferenceManager.logout();
 

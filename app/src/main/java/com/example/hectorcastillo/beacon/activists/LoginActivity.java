@@ -6,7 +6,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
@@ -199,7 +198,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
     }
 
     private void startDashBoardCategoryActivity() {
-        Intent intent = new Intent(this, DashBoardActivity.class);
+        Intent intent = new Intent(this, CategoryActivity.class);
         intent.putExtra(EXTRA_EMAIL, mEmailView.getText().toString());
         setResult(RESULT_OK);
 

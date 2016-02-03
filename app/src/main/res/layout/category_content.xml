@@ -3,23 +3,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.design.widget.CoordinatorLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <android.support.design.widget.CoordinatorLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/coordinator_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <GridView
             android:id="@+id/grid_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:columnWidth="120dp"
-            android:scrollbars="none"
             android:elevation="8dp"
-            android:gravity="center"
             android:horizontalSpacing="10dp"
             android:numColumns="2"
+            android:scrollbars="none"
             android:verticalSpacing="10dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 

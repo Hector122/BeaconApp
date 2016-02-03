@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Beacon</string>
+    <string name="app_name_about">Beacon Company.</string>
 
     <!--Dummy title and message for the task simulation. -->
     <string name="dummy_message_wait">Please waite...</string>
@@ -33,6 +34,7 @@
     <string name="text_find_us">Find us</string>
 
     <string name="email_example">email@example.com.do</string>
+    <string name="number_example">(809) 555-1234</string>
 
     <!-- Nav. Drawer -->
     <string name="item_home">Home</string>
@@ -70,5 +72,10 @@
     <string name="google_maps_key" translatable="false" templateMergeStrategy="preserve">
         AIzaSyABmvNhnYR5T6V0VY9QstHNca3f6q4SGW8
     </string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
 
 </resources>

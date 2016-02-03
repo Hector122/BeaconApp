@@ -83,7 +83,7 @@ public class SponsorSelectionActivity extends AppCompatActivity {
         //TODO: now is fix, this data suppose to parse form JSON object.
         List<Sponsor> list = new ArrayList<>();
 
-       int drawableId = getIntent().getIntExtra(DashBoardActivity.EXTRA_DRAWABLE_ID, 0);
+       int drawableId = getIntent().getIntExtra(CategoryActivity.EXTRA_DRAWABLE_ID, 0);
        // R.drawable.category_men_lifestyle_625x300
 
         for (int i = 0; i < 6; i++) {

@@ -66,7 +66,7 @@ implements View.OnClickListener {
     }
 
     private void startDashBoardCategoryActivity() {
-        Intent intent = new Intent(this, DashBoardActivity.class);
+        Intent intent = new Intent(this, CategoryActivity.class);
         intent.putExtra(LoginActivity.EXTRA_EMAIL, mEmailView.getText().toString());
         setResult(Activity.RESULT_OK);
 

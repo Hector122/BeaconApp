@@ -68,7 +68,6 @@ public class CategoryAdapter extends BaseAdapter {
                 .crossFade(300)
                 .into(holder.image);
 
-
         return convertView;
     }
 
