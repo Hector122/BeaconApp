@@ -59,9 +59,6 @@ public class SponsorSelectionActivity extends AppCompatActivity {
         //Get the refreshLayout
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
 
-        //Set Refresh listener
-        mSwipeRefreshLayout.setOnRefreshListener(new MyOnRefreshListeners());
-
         //Set the colors
         mSwipeRefreshLayout.setColorSchemeResources(
                 R.color.c1,
@@ -69,6 +66,8 @@ public class SponsorSelectionActivity extends AppCompatActivity {
                 R.color.c3,
                 R.color.c4 );
 
+        //Set Refresh listener
+        mSwipeRefreshLayout.setOnRefreshListener(new MyOnRefreshListeners());
 
         //Create a new Adapter
         setSponsorAdapter();
