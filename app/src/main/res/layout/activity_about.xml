@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/about_container"
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
     android:background="@color/window_background"
     android:orientation="vertical">
 
-    <include layout="@layout/toolbar"/>
+    <include layout="@layout/toolbar" />
 
     <TextView
         android:id="@+id/title_about"
@@ -92,6 +93,5 @@
         </RelativeLayout>
 
     </android.support.v7.widget.CardView>
-
 
 </LinearLayout>

@@ -62,6 +62,14 @@ public class SponsorSelectionActivity extends AppCompatActivity {
         //Set Refresh listener
         mSwipeRefreshLayout.setOnRefreshListener(new MyOnRefreshListeners());
 
+        //Set the colors
+        mSwipeRefreshLayout.setColorSchemeResources(
+                R.color.c1,
+                R.color.c2,
+                R.color.c3,
+                R.color.c4 );
+
+
         //Create a new Adapter
         setSponsorAdapter();
     }
@@ -111,6 +119,8 @@ public class SponsorSelectionActivity extends AppCompatActivity {
 
         @Override
         public void onRefresh() {
+
+
             new HackingBackgroundTask().execute();
         }
     }

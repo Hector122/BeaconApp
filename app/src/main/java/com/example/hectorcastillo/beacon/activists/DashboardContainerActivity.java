@@ -21,20 +21,20 @@ import com.example.hectorcastillo.beacon.helper.ParseConfig;
 import com.example.hectorcastillo.beacon.helper.PreferenceManager;
 
 /**
- * Created by hector castillo on 12/1/16.
+ * Created by hector castillo on 3/2/16.
  */
-public class CategoryActivity extends AppCompatActivity
+public class DashboardContainerActivity extends AppCompatActivity
         implements AdapterView.OnItemClickListener {
+
     public static final String EXTRA_DRAWABLE_ID = "app.android.beacon.image";
 
     private DrawerLayout mDrawerLayout;
     private String mDrawerTitle;
+
     private GridView mGridView;
     private CategoryAdapter mAdapter;
-    private PreferenceManager mPreferenceManager;
 
-    private TextView mEmailHeader;
-    private TextView mUsernameHeader;
+    private PreferenceManager mPreferenceManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +57,6 @@ public class CategoryActivity extends AppCompatActivity
         if (savedInstanceState == null) {
             selectItem(mDrawerTitle);
         }
-
     }
 
     private void initializeVariables() {
@@ -74,21 +73,12 @@ public class CategoryActivity extends AppCompatActivity
         if (navigationView != null) {
             setupDrawerContent(navigationView);
         }
-
-        //TODO: check for null reference.
-        View view = navigationView.getHeaderView(0);
-
-        mEmailHeader = (TextView) view.findViewById(R.id.nav_email_text_view);
-        mUsernameHeader = (TextView) view.findViewById(R.id.nav_user_name_text_view);
     }
 
     private void registerEmailInParse() {
         //TODO:  Check this.
         String emailFromIntent = getIntent().getStringExtra(LoginActivity.EXTRA_EMAIL);
         String email = (emailFromIntent == null) ? "example@test.com.do" : emailFromIntent;
-
-        mEmailHeader.setText(email);
-        mUsernameHeader.setText("Hector Castillo");
 
         //
         mPreferenceManager.createLoginSession(email, "password");
@@ -195,7 +185,7 @@ public class CategoryActivity extends AppCompatActivity
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent intent = new Intent(CategoryActivity.this, SponsorSelectionActivity.class);
+        Intent intent = new Intent(DashboardContainerActivity.this, SponsorSelectionActivity.class);
         intent.putExtra(EXTRA_DRAWABLE_ID, mAdapter.getItem(position).getIdDrawable());
         startActivity(intent);
     }

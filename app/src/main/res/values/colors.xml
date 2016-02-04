@@ -15,4 +15,11 @@
     <color name="ligth_grey">#E0E0E0</color>
     <color name="dark_grey">#757575</color>
 
+
+    <!-- SwipeRefresh Colors -->
+    <color name="c1">#A7FFEB</color>
+    <color name="c2">#64FFDA</color>
+    <color name="c3">#1DE9B6</color>
+    <color name="c4">#00BFA5</color>
+
 </resources>
