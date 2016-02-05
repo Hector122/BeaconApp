@@ -53,6 +53,14 @@
     tristique consectetur, lacus ligula dignissim turpis, cursus commodo turpis
     libero in purus. Phasellus tempus gravida tempor.</string>
 
+
+    <string-array name="Titles_sponsor_examples">
+        <item>Why Supergirl  The Flash Should Have a Musical Crossover</item>
+        <item>Pro-rape pick-up artist cancels global meetups for safety of his men</item>
+        <item>Etiquette Monster: How Rude Am I Allowed to Be on an Airplane?</item>
+        <item>Apple will soon let customers trade in busted iPhones toward a new one</item>
+    </string-array>
+
     <!--
      TODO: Before you run your application, you need a Google Maps API key.
 

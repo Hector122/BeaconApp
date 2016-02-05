@@ -103,7 +103,13 @@ implements View.OnClickListener{
     private void setTitleCollapse(){
         CollapsingToolbarLayout collapse =
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-        collapse.setTitle("Text Title."); // Change title.
+        collapse.setTitle(mSponsorItem.getTextCategory()); // Change title.
+
+
+        //TODO: make another function for this.
+
+        mSponsorTitle.setText(mSponsorItem.getTextTitle());
+
     }
 
     @Override

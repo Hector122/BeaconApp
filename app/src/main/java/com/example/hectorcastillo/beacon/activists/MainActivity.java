@@ -9,6 +9,9 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 import com.example.hectorcastillo.beacon.R;
+import com.example.hectorcastillo.beacon.asynctask.HelperAsync;
+import com.example.hectorcastillo.beacon.asynctask.SimulateAsyncTask;
+import com.example.hectorcastillo.beacon.helper.PreferenceManager;
 
 /**
  * Created by hector castillo on 12/1/16.
@@ -26,14 +29,38 @@ public class MainActivity extends Activity implements OnClickListener {
         setContentView(R.layout.activity_main);
 
         initializeVariables();
+
+        validateIsAutoLoginEnable();
+    }
+
+
+    private void validateIsAutoLoginEnable() {
+        PreferenceManager preferenceManager = new PreferenceManager(this);
+        boolean isLoggedIn = preferenceManager.isLoggeIn();
+
+        if (isLoggedIn) {
+            String email = preferenceManager.getEmail();
+
+            String title = getString(R.string.dummy_title_login);
+            String message = getString(R.string.dummy_message_wait);
+
+            HelperAsync helperAsync = new HelperAsync(title, message, this);
+            new SimulateAsyncTask(helperAsync).execute(email);
+
+//            Intent intent = new Intent(this.getApplication(), CategoryActivity.class);
+//            intent.putExtra(LoginActivity.EXTRA_EMAIL, email);
+//            startActivity(intent);
+//
+//            finish();
+        }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if((requestCode == MAIN_CLOSED_REQUEST_CODE)
-                && ( resultCode == RESULT_OK)){
+        if ((requestCode == MAIN_CLOSED_REQUEST_CODE)
+                && (resultCode == RESULT_OK)) {
 
             finish();
             //TODO: delete
@@ -70,7 +97,7 @@ public class MainActivity extends Activity implements OnClickListener {
                 break;
 
             case R.id.register_button:
-               intent = new Intent(this, RegisterActivity.class);
+                intent = new Intent(this, RegisterActivity.class);
                 break;
 
             default:

@@ -120,6 +120,16 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".activists.AboutActivity"
+            android:parentActivityName=".activists.CategoryActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.app.beacon" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
 
         <!--  Added for Parse push notifications -->
         <service android:name="com.parse.PushService" />
