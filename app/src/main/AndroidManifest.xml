@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.hectorcastillo.beacon">
+    package="com.app.beacon">
 
     <!-- Pare Permission -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -35,7 +35,7 @@
         android:required="true"/>
 
     <application
-        android:name=".app.MyApplication"
+        android:name="com.app.beacon.app.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_beacon_launcher"
         android:label="@string/app_name"
@@ -44,7 +44,7 @@
 
         <!-- Register and Login select activity -->
         <activity
-            android:name=".activists.MainActivity"
+            android:name="com.app.beacon.activists.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -55,8 +55,8 @@
         </activity>
 
         <activity
-            android:name=".activists.LoginActivity"
-            android:parentActivityName=".activists.MainActivity"
+            android:name="com.app.beacon.activists.LoginActivity"
+            android:parentActivityName="com.app.beacon.activists.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="com.app.beacon" />
@@ -64,8 +64,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activists.RegisterActivity"
-            android:parentActivityName=".activists.MainActivity"
+            android:name="com.app.beacon.activists.RegisterActivity"
+            android:parentActivityName="com.app.beacon.activists.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="com.app.beacon" />
@@ -73,8 +73,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activists.ForgotPasswordActivity"
-            android:parentActivityName=".activists.LoginActivity"
+            android:name="com.app.beacon.activists.ForgotPasswordActivity"
+            android:parentActivityName="com.app.beacon.activists.LoginActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="com.app.beacon" />
@@ -84,7 +84,7 @@
 
         <!-- TODO: change name to LAUNCHER -->
         <activity
-            android:name=".activists.CategoryActivity"
+            android:name="com.app.beacon.activists.CategoryActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="com.app.beacon" />
@@ -92,8 +92,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activists.SponsorSelectionActivity"
-            android:parentActivityName=".activists.CategoryActivity"
+            android:name="com.app.beacon.activists.SponsorSelectionActivity"
+            android:parentActivityName="com.app.beacon.activists.CategoryActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="com.app.beacon" />
@@ -101,8 +101,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activists.SponsorDetailActivity"
-            android:parentActivityName=".activists.SponsorSelectionActivity"
+            android:name="com.app.beacon.activists.SponsorDetailActivity"
+            android:parentActivityName="com.app.beacon.activists.SponsorSelectionActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="com.app.beacon" />
@@ -111,8 +111,8 @@
         </activity>
 
         <activity
-            android:name=".activists.MapActivity"
-            android:parentActivityName=".activists.SponsorDetailActivity"
+            android:name="com.app.beacon.activists.MapActivity"
+            android:parentActivityName="com.app.beacon.activists.SponsorDetailActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="com.app.beacon" />
