@@ -1,15 +1,12 @@
 package com.app.beacon.activists;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.AutoCompleteTextView;
 
 import com.app.beacon.asynctask.HelperAsync;
 import com.app.beacon.R;
@@ -20,7 +17,7 @@ import com.app.beacon.utilitys.Validations;
  * Created by hector castillo on 12/1/16.
  */
 public class RegisterActivity extends AppCompatActivity
-implements View.OnClickListener {
+        implements View.OnClickListener {
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
     private EditText mPasswordConfirmationVIew;
@@ -38,19 +35,19 @@ implements View.OnClickListener {
     }
 
 
-    private void initializeVariables(){
+    private void initializeVariables() {
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email_text_view);
 
         mPasswordView = (EditText) findViewById(R.id.password_edit_text);
 
         mPasswordConfirmationVIew = (EditText) findViewById(R.id.password_confirmation_edit_text);
 
-        mRegisterButton = (Button)findViewById(R.id.email_sign_in_button);
+        mRegisterButton = (Button) findViewById(R.id.email_sign_in_button);
         mRegisterButton.setOnClickListener(this);
 
     }
 
-    private void setToolbar(){
+    private void setToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -63,15 +60,23 @@ implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         attemptLogin();
+
     }
 
     private void startDashBoardCategoryActivity() {
-        Intent intent = new Intent(this, CategoryActivity.class);
-        intent.putExtra(LoginActivity.EXTRA_EMAIL, mEmailView.getText().toString());
-        setResult(Activity.RESULT_OK);
+        //  Intent intent = new Intent(this, CategoryActivity.class);
+        // intent.putExtra(LoginActivity.EXTRA_EMAIL, mEmailView.getText().toString());
+        //setResult(Activity.RESULT_OK);
 
-        startActivity(intent);
-        finish();
+        String email = mEmailView.getText().toString();
+
+        String title = getString(R.string.dummy_title_register);
+        String message = getString(R.string.dummy_message_wait);
+
+        HelperAsync helperAsync = new HelperAsync(title, message, this);
+        new SimulateAsyncTask(helperAsync).execute(email);
+
+        //finish();
     }
 
     /**
@@ -130,33 +135,26 @@ implements View.OnClickListener {
             // form field with an error.
             focusView.requestFocus();
         } else {
-            String title = getString(R.string.dummy_title_register);
-            String message = getString(R.string.dummy_message_wait);
+            startDashBoardCategoryActivity();
 
-            //Initialise the Helper
-            HelperAsync helper = new HelperAsync(title, message, RegisterActivity.this);
-
-            //Begin the simulation task.
-           SimulateAsyncTask task = new SimulateAsyncTask(helper);
-            task.execute();
-
-            while(task.getStatus() != AsyncTask.Status.RUNNING){
-                startDashBoardCategoryActivity();
-                break;
-            }
-
-           // startDashBoardCategoryActivity();
+//            String title = getString(R.string.dummy_title_register);
+//            String message = getString(R.string.dummy_message_wait);
+//
+//            //Initialise the Helper
+//            HelperAsync helper = new HelperAsync(title, message, RegisterActivity.this);
+//
+//            //Begin the simulation task.
+//            SimulateAsyncTask task = new SimulateAsyncTask(helper);
+//            task.execute();
+//
+//            while (task.getStatus() != AsyncTask.Status.RUNNING) {
+//                startDashBoardCategoryActivity();
+//                break;
+            // }
 
             //TODO: this comment this
             //mAuthTask = new UserLoginTask(email, password);
             //mAuthTask.execute();
         }
     }
-
-
-
-
-
-
-
 }

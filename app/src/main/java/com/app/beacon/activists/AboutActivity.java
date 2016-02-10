@@ -2,6 +2,8 @@ package com.app.beacon.activists;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
 import com.app.beacon.R;
 
@@ -15,40 +17,28 @@ public class AboutActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_about);
+
+        setToolbar();
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
+    private void setToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-    //    LinearLayout mLinearLayout;
-//
-//    @Nullable
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//        return super.onCreateView(inflater, container, savedInstanceState);
-//
-//        View view = inflater.inflate(R.layout.activity_about, container, false);
-//
-//        mLinearLayout = (mLinearLayout) view.findViewById(R.id.about_container);
-//        setToolbar()
-//
-//        return view;
-//    }
-//
-//    private void setToolbar() {
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-//
-//        //TODO: support previous version.
-//        final ActionBar actionBar = getSupportActionBar();
-//
-//        if (null != actionBar) {
-//            // Put icon in the drawer toggle
-//            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
-//            actionBar.setDisplayHomeAsUpEnabled(true);
-//        }
-//    }
-
-
+        if (getSupportActionBar() != null) {
+            // Providing back navigation.
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+    }
 }

@@ -91,20 +91,27 @@ public class SponsorSelectionActivity extends AppCompatActivity {
         List<Sponsor> list = new ArrayList<>();
 
        int drawableId = getIntent().getIntExtra(CategoryActivity.EXTRA_DRAWABLE_ID, 0);
-       // R.drawable.category_men_lifestyle_625x300
 
-        for (int i = 0; i < 6; i++) {
-            Sponsor sponsor = new Sponsor();
-            sponsor.setTextTitle("Text Title " + String.valueOf(i));
-            sponsor.setTextDateFormat("26, January");
-            sponsor.setTextCategory("Health & fitness");
-            sponsor.setIdSponsorImage(drawableId);
+        //This is the reference to the category chosen.
+        Sponsor sponsor = new Sponsor();
+        sponsor.setTextTitle("Text Title " + 1);
+        sponsor.setTextDateFormat("26, January");
+        sponsor.setTextCategory("Health & fitness");
+        sponsor.setIdSponsorImage(drawableId);
+
+        list.add(sponsor);
+
+
+
+        //Dummy Random data for the demonstration.
+        for (int i = 0; i < 5; i++) {
+            sponsor = new Sponsor();
+            sponsor.setTextTitle(Sponsor.getRandomSponsorTitle());
+            sponsor.setTextDateFormat(Sponsor.getRandomSponsorDate());
+            sponsor.setTextCategory(Sponsor.getRandomSponsorCategory());
+            sponsor.setIdSponsorImage(Sponsor.getRandomSponsorDrawable());
 
             list.add(sponsor);
-
-//            list.add(new Sponsor("Text Title " + String.valueOf(i),
-//                    "26, January", "Health & fitness",
-//                    R.drawable.category_men_lifestyle_625x300));
         }
 
         //Set the adapter

@@ -179,11 +179,11 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
             // form field with an error.
             focusView.requestFocus();
         } else {
-            startDashBoardCategoryActivity();
+            //startDashBoardCategoryActivity();
 
             //TODO: this comment this
-            //mAuthTask = new UserLoginTask(email, password);
-            //mAuthTask.execute();
+            mAuthTask = new UserLoginTask(email, password);
+            mAuthTask.execute();
         }
     }
 

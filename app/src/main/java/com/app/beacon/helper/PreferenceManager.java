@@ -64,7 +64,6 @@ public class PreferenceManager {
      * @return
      */
     public Boolean isLoggeIn(){
-
         return preferences.getBoolean(IS_LOGIN, false);
     }
 

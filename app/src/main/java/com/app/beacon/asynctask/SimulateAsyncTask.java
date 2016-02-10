@@ -12,10 +12,12 @@ import com.app.beacon.activists.LoginActivity;
 /**
  * Created by Hector_2 on 1/30/2016.
  */
-public class SimulateAsyncTask extends AsyncTask<Void, Void, Boolean> {
+public class SimulateAsyncTask extends AsyncTask<String, Void, Boolean> {
     //Progress Dialog to show the message.
     ProgressDialog mProgressDialog;
     HelperAsync mHelper;
+
+    String mEmail;
 
     public SimulateAsyncTask(HelperAsync helper) {
         this.mHelper = helper;
@@ -30,7 +32,8 @@ public class SimulateAsyncTask extends AsyncTask<Void, Void, Boolean> {
 
 
     @Override
-    protected Boolean doInBackground(Void... params) {
+    protected Boolean doInBackground(String... emails) {
+        mEmail = emails[0];
 
         try {
             Thread.sleep(4000);
@@ -49,18 +52,19 @@ public class SimulateAsyncTask extends AsyncTask<Void, Void, Boolean> {
             Activity activity = (Activity)mHelper.getContext();
             activity.finish();
         }else {
-           // startDashBoardCategoryActivity();
+            startDashBoardCategoryActivity();
         }
     }
 
     private void startDashBoardCategoryActivity() {
         Activity activity = (Activity) mHelper.getContext();
         Intent intent = new Intent(mHelper.getContext(), CategoryActivity.class);
-        // intent.putExtra(LoginActivity.EXTRA_EMAIL, mEmailView.getText().toString());
-        intent.putExtra(LoginActivity.EXTRA_EMAIL,"Test@email.com");
+        intent.putExtra(LoginActivity.EXTRA_EMAIL, mEmail);
         activity.setResult(Activity.RESULT_OK);
 
-        activity.startActivity(intent);
+        //start new activity.
         activity.finish();
+        activity.startActivity(intent);
+
     }
 }

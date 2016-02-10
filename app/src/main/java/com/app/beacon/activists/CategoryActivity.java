@@ -84,17 +84,20 @@ public class CategoryActivity extends AppCompatActivity
     }
 
     private void registerEmailInParse() {
+
         //TODO:  Check this.
         String emailFromIntent = getIntent().getStringExtra(LoginActivity.EXTRA_EMAIL);
         String email = (emailFromIntent == null) ? "example@test.com.do" : emailFromIntent;
 
         mEmailHeader.setText(email);
-        mUsernameHeader.setText("Hector Castillo");
+        mUsernameHeader.setText("Sr. Test Example");
 
-        //
-        mPreferenceManager.createLoginSession(email, "password");
-        //
-        ParseConfig.subscribeWithEmail(email);
+        if(!mPreferenceManager.isLoggeIn()){
+            //
+            mPreferenceManager.createLoginSession(email, "password");
+            //
+            ParseConfig.subscribeWithEmail(email);
+        }
     }
 
     private void setCategoryAdapter() {
@@ -160,6 +163,7 @@ public class CategoryActivity extends AppCompatActivity
                                 break;
 
                             case R.id.nav_about:
+                                startActivity(new Intent(CategoryActivity.this, AboutActivity.class));
                                 break;
 
                             case R.id.nav_sub_logout:
