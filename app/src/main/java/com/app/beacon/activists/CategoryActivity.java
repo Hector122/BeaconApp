@@ -1,6 +1,7 @@
 package com.app.beacon.activists;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -10,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +19,7 @@ import android.widget.TextView;
 
 import com.app.beacon.R;
 import com.app.beacon.adapters.CustomCategoryAdapter;
+import com.app.beacon.custom.CustomItemDecorator;
 import com.app.beacon.helper.ParseConfig;
 import com.app.beacon.helper.PreferenceManager;
 import com.app.beacon.sponsor.SponsorCategory;
@@ -27,7 +30,8 @@ import com.app.beacon.sponsor.SponsorCategory;
  */
 public class CategoryActivity extends AppCompatActivity {
     public static final String EXTRA_DRAWABLE_ID = "app.android.beacon.image";
-    public static final int SPAN_COUNT = 2;
+    private static final int SPAN_COUNT = 2;
+    private static final int GRID_MARGIN = 20;
 
     private DrawerLayout mDrawerLayout;
     private String mDrawerTitle;
@@ -71,24 +75,22 @@ public class CategoryActivity extends AppCompatActivity {
         mLayoutManager = new GridLayoutManager(this,SPAN_COUNT);
         mGridView.setLayoutManager(mLayoutManager);
 
-        // mGridView.setExpanded(true);
-        // mGridView.setDrawSelectorOnTop(true);
-        //mGridView.setExpanded(true);
-
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-
+        //Get the SharePreference Manger
         mPreferenceManager = new PreferenceManager(this);
 
+        //Get the Navigation Drawer
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        //set the navigation drawer content views.
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         if (navigationView != null) {
             setupDrawerContent(navigationView);
+
+            View view = navigationView.getHeaderView(0);
+
+            mEmailHeader = (TextView) view.findViewById(R.id.nav_email_text_view);
+            mUsernameHeader = (TextView) view.findViewById(R.id.nav_user_name_text_view);
         }
-
-        //TODO: check for null reference.
-        View view = navigationView.getHeaderView(0);
-
-        mEmailHeader = (TextView) view.findViewById(R.id.nav_email_text_view);
-        mUsernameHeader = (TextView) view.findViewById(R.id.nav_user_name_text_view);
     }
 
     private void registerEmailInParse() {
@@ -101,9 +103,7 @@ public class CategoryActivity extends AppCompatActivity {
         mUsernameHeader.setText("Sr. Test Example");
 
         if (!mPreferenceManager.isLoggeIn()) {
-            //
             mPreferenceManager.createLoginSession(email, "password");
-            //
             ParseConfig.subscribeWithEmail(email);
         }
     }
@@ -111,7 +111,15 @@ public class CategoryActivity extends AppCompatActivity {
     private void setCategoryAdapter() {
         mAdapter = new CustomCategoryAdapter(SponsorCategory.ITEMS, CategoryActivity.this);
         mGridView.setAdapter(mAdapter);
-        //mGridView.OnClickListener(this);
+
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            mGridView.addItemDecoration(new CustomItemDecorator(GRID_MARGIN));
+
+            int check = mGridView.getHeight();
+            Log.i("heigth", String.valueOf(check));
+
+            mGridView.setMinimumHeight(170);
+        }
     }
 
     @Override
