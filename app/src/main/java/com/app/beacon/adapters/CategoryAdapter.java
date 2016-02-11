@@ -45,7 +45,7 @@ public class CategoryAdapter extends BaseAdapter {
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.
                     getSystemService(context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.category_grid_item, parent, false);
+            convertView = inflater.inflate(R.layout.item_category_grid, parent, false);
 
             // initialize the view holder
             holder = new ViewHolder();

@@ -61,7 +61,7 @@ public class DashboardContainerActivity extends AppCompatActivity
 
     private void initializeVariables() {
         //Get the references for the views
-        mGridView = (GridView) findViewById(R.id.grid_view);
+        mGridView = (GridView) findViewById(R.id.recycle_view_category_grid);
         mGridView.setDrawSelectorOnTop(true);
         //mGridView.setExpanded(true);
 

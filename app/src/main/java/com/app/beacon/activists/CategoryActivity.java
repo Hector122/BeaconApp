@@ -7,31 +7,33 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.TextView;
 
 import com.app.beacon.R;
-import com.app.beacon.adapters.CategoryAdapter;
+import com.app.beacon.adapters.CustomCategoryAdapter;
 import com.app.beacon.helper.ParseConfig;
 import com.app.beacon.helper.PreferenceManager;
+import com.app.beacon.sponsor.SponsorCategory;
 
 
 /**
  * Created by hector castillo on 12/1/16.
  */
-public class CategoryActivity extends AppCompatActivity
-        implements AdapterView.OnItemClickListener {
+public class CategoryActivity extends AppCompatActivity {
     public static final String EXTRA_DRAWABLE_ID = "app.android.beacon.image";
+    public static final int SPAN_COUNT = 2;
 
     private DrawerLayout mDrawerLayout;
     private String mDrawerTitle;
-    private GridView mGridView;
-    private CategoryAdapter mAdapter;
+    private RecyclerView mGridView;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private CustomCategoryAdapter mAdapter;
     private PreferenceManager mPreferenceManager;
 
     private TextView mEmailHeader;
@@ -58,13 +60,19 @@ public class CategoryActivity extends AppCompatActivity
         if (savedInstanceState == null) {
             selectItem(mDrawerTitle);
         }
-
     }
 
     private void initializeVariables() {
         //Get the references for the views
-        mGridView = (GridView) findViewById(R.id.grid_view);
-        mGridView.setDrawSelectorOnTop(true);
+        mGridView = (RecyclerView) findViewById(R.id.recycle_view_category_grid);
+        mGridView.setHasFixedSize(true);
+
+        //Set the GridViewLayout Manager
+        mLayoutManager = new GridLayoutManager(this,SPAN_COUNT);
+        mGridView.setLayoutManager(mLayoutManager);
+
+        // mGridView.setExpanded(true);
+        // mGridView.setDrawSelectorOnTop(true);
         //mGridView.setExpanded(true);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -92,7 +100,7 @@ public class CategoryActivity extends AppCompatActivity
         mEmailHeader.setText(email);
         mUsernameHeader.setText("Sr. Test Example");
 
-        if(!mPreferenceManager.isLoggeIn()){
+        if (!mPreferenceManager.isLoggeIn()) {
             //
             mPreferenceManager.createLoginSession(email, "password");
             //
@@ -101,9 +109,9 @@ public class CategoryActivity extends AppCompatActivity
     }
 
     private void setCategoryAdapter() {
-        mAdapter = new CategoryAdapter(this);
+        mAdapter = new CustomCategoryAdapter(SponsorCategory.ITEMS, CategoryActivity.this);
         mGridView.setAdapter(mAdapter);
-        mGridView.setOnItemClickListener(this);
+        //mGridView.OnClickListener(this);
     }
 
     @Override
@@ -198,12 +206,24 @@ public class CategoryActivity extends AppCompatActivity
         setTitle(title);
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent intent = new Intent(CategoryActivity.this, SponsorSelectionActivity.class);
-        intent.putExtra(EXTRA_DRAWABLE_ID, mAdapter.getItem(position).getIdDrawable());
-        startActivity(intent);
-    }
+//
+//    @Override
+//    public void onClick(View v) {
+//        Intent intent = new Intent(CategoryActivity.this, SponsorSelectionActivity.class);
+//        intent.putExtra(EXTRA_DRAWABLE_ID, mAdapter.getItemViewType(position).getIdDrawable());
+//
+//        mAdapter.g
+//
+//        startActivity(intent);
+//
+//    }
+//
+//    @Override
+//    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//        Intent intent = new Intent(CategoryActivity.this, SponsorSelectionActivity.class);
+//        intent.putExtra(EXTRA_DRAWABLE_ID, mAdapter.getItem(position).getIdDrawable());
+//        startActivity(intent);
+//    }
 
     private void logout() {
         mPreferenceManager.logout();

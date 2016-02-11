@@ -30,7 +30,7 @@ public class SponsorSelectionActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sponsor_selection_activity);
+        setContentView(R.layout.activity_sponsor_selection);
 
         initializeVariables();
 
@@ -125,8 +125,6 @@ public class SponsorSelectionActivity extends AppCompatActivity {
 
         @Override
         public void onRefresh() {
-
-
             new HackingBackgroundTask().execute();
         }
     }

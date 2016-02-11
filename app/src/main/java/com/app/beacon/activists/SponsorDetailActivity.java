@@ -38,7 +38,7 @@ implements View.OnClickListener{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sponser_details_activity);
+        setContentView(R.layout.activity_sponser_details);
 
         initializeVariables();
 
