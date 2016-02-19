@@ -10,11 +10,9 @@ import android.view.View;
 public class CustomItemDecorator extends RecyclerView.ItemDecoration {
     private final int mSpace;
 
-
-    public CustomItemDecorator(int mSpace){
+    public CustomItemDecorator(int mSpace) {
         this.mSpace = mSpace;
     }
-
 
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
@@ -22,7 +20,6 @@ public class CustomItemDecorator extends RecyclerView.ItemDecoration {
         outRect.left = mSpace;
         outRect.right = mSpace;
         outRect.top = mSpace;
-
 
         //super.getItemOffsets(outRect, view, parent, state);
     }
