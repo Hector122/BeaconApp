@@ -90,7 +90,7 @@ public class SponsorSelectionActivity extends AppCompatActivity {
         //TODO: now is fix, this data suppose to parse form JSON object.
         List<Sponsor> list = new ArrayList<>();
 
-       int drawableId = getIntent().getIntExtra(CategoryActivity.EXTRA_DRAWABLE_ID, 0);
+       int drawableId = getIntent().getIntExtra(DashboardContainerActivity.EXTRA_DRAWABLE_ID, 0);
 
         //This is the reference to the category chosen.
         Sponsor sponsor = new Sponsor();

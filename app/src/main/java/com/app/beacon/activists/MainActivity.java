@@ -47,7 +47,7 @@ public class MainActivity extends Activity implements OnClickListener {
             HelperAsync helperAsync = new HelperAsync(title, message, this);
             new SimulateAsyncTask(helperAsync).execute(email);
 
-//            Intent intent = new Intent(this.getApplication(), CategoryActivity.class);
+//            Intent intent = new Intent(this.getApplication(), DashboardContainerActivity.class);
 //            intent.putExtra(LoginActivity.EXTRA_EMAIL, email);
 //            startActivity(intent);
 //

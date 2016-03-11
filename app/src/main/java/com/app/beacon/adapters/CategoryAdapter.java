@@ -1,78 +1,97 @@
 package com.app.beacon.adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.app.beacon.R;
+import com.app.beacon.activists.DashboardContainerActivity;
+import com.app.beacon.activists.SponsorSelectionActivity;
 import com.app.beacon.sponsor.SponsorCategory;
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- * Created by Hector_2 on 1/24/2016.
+ * Created by hector castillo on 10/2/16.
  */
-public class CategoryAdapter extends BaseAdapter {
-    private Context context;
+public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
+    private final List<SponsorCategory> items;
+    private Context mContext;
 
-    public CategoryAdapter(Context context) {
-        this.context = context;
-    }
+    /***
+     * Constructor
+     * @param sponsors
+     * @param context
+     */
 
-    @Override
-    public long getItemId(int position) {
-        return getItem(position).getId();
-    }
+    public CategoryAdapter(SponsorCategory[] sponsors, Context context) {
+        items = new ArrayList<SponsorCategory>();
+        mContext = context;
 
-    @Override
-    public SponsorCategory getItem(int position) {
-        return SponsorCategory.ITEMS[position];
-    }
-
-
-    @Override
-    public int getCount() {
-        return SponsorCategory.ITEMS.length;
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
-
-        if (convertView == null) {
-            LayoutInflater inflater = (LayoutInflater) context.
-                    getSystemService(context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.item_category_grid, parent, false);
-
-            // initialize the view holder
-            holder = new ViewHolder();
-
-            //get the reference view
-            holder.image = (ImageView) convertView.findViewById(R.id.category_image);
-            holder.name = (TextView) convertView.findViewById(R.id.category_name);
-            convertView.setTag(holder);
-
-        } else {
-            holder = (ViewHolder) convertView.getTag();
+        //populate the list with the array of element.
+        for (SponsorCategory sponsor : sponsors) {
+            items.add(sponsor);
         }
+    }
 
-        //get the item to
-        final SponsorCategory item = getItem(position);
+    /***
+     * View Holder patter
+     */
 
-        holder.name.setText(item.getName());
-        Glide.with(holder.image.getContext())
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        public View viewHolder;
+        public TextView categoryName;
+        public ImageView categoryImage;
+
+        public ViewHolder(View view) {
+            super(view);
+            viewHolder = view;
+            categoryImage = (ImageView) view.findViewById(R.id.category_image);
+            categoryName = (TextView) view.findViewById(R.id.category_name);
+        }
+    }
+
+
+
+    @Override
+    public void onBindViewHolder(ViewHolder holder, final int position) {
+        //get the item
+        final SponsorCategory item = items.get(position);
+
+        holder.categoryName.setText(item.getName());
+        Glide.with(holder.categoryImage.getContext())
                 .load(item.getIdDrawable())
                 .crossFade(300)
-                .into(holder.image);
+                .into(holder.categoryImage);
 
-        return convertView;
+
+        holder.viewHolder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, SponsorSelectionActivity.class);
+                intent.putExtra(DashboardContainerActivity.EXTRA_DRAWABLE_ID, items.get(position).getIdDrawable());
+                mContext.startActivity(intent);
+            }
+        });
     }
 
-    public class ViewHolder {
-        TextView name;
-        ImageView image;
+    @Override
+    public int getItemCount() {
+        return items.size();
+    }
+
+    @Override
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_category_grid, parent, false);
+
+        return new ViewHolder(view);
     }
 }

@@ -3,6 +3,8 @@ package com.app.beacon.activists;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -11,35 +13,32 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.TextView;
 
-import com.app.beacon.helper.ParseConfig;
 import com.app.beacon.R;
-import com.app.beacon.adapters.CategoryAdapter;
+import com.app.beacon.fragments.CategoryFragment;
+import com.app.beacon.helper.ParseConfig;
 import com.app.beacon.helper.PreferenceManager;
 
-/**
- * Created by hector castillo on 3/2/16.
- */
-public class DashboardContainerActivity extends AppCompatActivity
-        implements AdapterView.OnItemClickListener {
 
+/**
+ * Created by hector castillo on 12/1/16.
+ */
+public class DashboardContainerActivity extends AppCompatActivity {
     public static final String EXTRA_DRAWABLE_ID = "app.android.beacon.image";
 
     private DrawerLayout mDrawerLayout;
     private String mDrawerTitle;
-
-    private GridView mGridView;
-    private CategoryAdapter mAdapter;
-
     private PreferenceManager mPreferenceManager;
+
+    //Reference variables in the xml layout.
+    private TextView mEmailHeader;
+    private TextView mUsernameHeader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_category);
+        setContentView(R.layout.activity_dashboard_container);
 
         // set the corresponding view.
         initializeVariables();
@@ -50,46 +49,13 @@ public class DashboardContainerActivity extends AppCompatActivity
         //Register email address in parse.
         registerEmailInParse();
 
-        //Initialize the adapter
-        setCategoryAdapter();
+        //TODO: fill this with the principal layout fragment.
+        //setAdater();
 
         mDrawerTitle = getResources().getString(R.string.item_home);
         if (savedInstanceState == null) {
             selectItem(mDrawerTitle);
         }
-    }
-
-    private void initializeVariables() {
-        //Get the references for the views
-        mGridView = (GridView) findViewById(R.id.recycle_view_category_grid);
-        mGridView.setDrawSelectorOnTop(true);
-        //mGridView.setExpanded(true);
-
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-
-        mPreferenceManager = new PreferenceManager(this);
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        if (navigationView != null) {
-            setupDrawerContent(navigationView);
-        }
-    }
-
-    private void registerEmailInParse() {
-        //TODO:  Check this.
-        String emailFromIntent = getIntent().getStringExtra(LoginActivity.EXTRA_EMAIL);
-        String email = (emailFromIntent == null) ? "example@test.com.do" : emailFromIntent;
-
-        //
-        mPreferenceManager.createLoginSession(email, "password");
-        //
-        ParseConfig.subscribeWithEmail(email);
-    }
-
-    private void setCategoryAdapter() {
-        mAdapter = new CategoryAdapter(this);
-        mGridView.setAdapter(mAdapter);
-        mGridView.setOnItemClickListener(this);
     }
 
     @Override
@@ -108,11 +74,39 @@ public class DashboardContainerActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Initializer activity variables
+     */
+
+    private void initializeVariables() {
+        //Get the SharePreference Manger
+        mPreferenceManager = new PreferenceManager(this);
+
+        //Get the Navigation Drawer
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        //Set the Navigation Drawer content view.
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        if (navigationView != null) {
+            setupDrawerContent(navigationView);
+
+            //Reference to header container in the Nav.
+            View view = navigationView.getHeaderView(0);
+
+            mEmailHeader = (TextView) view.findViewById(R.id.nav_email_text_view);
+            mUsernameHeader = (TextView) view.findViewById(R.id.nav_user_name_text_view);
+        }
+    }
+
+    /**
+     * Get and set the Toolbar in main layout view.
+     */
+
     private void setToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //TODO: support previous version.
+        //support previous version.
         final ActionBar actionBar = getSupportActionBar();
 
         if (null != actionBar) {
@@ -121,6 +115,33 @@ public class DashboardContainerActivity extends AppCompatActivity
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
     }
+
+    /**
+     * Register email in Parse for Push notification and save the Email and Password
+     * in SharedPreference, NOTE: Password in plain Text only for the demo, when the
+     * app is in production encrypted before store.
+     */
+
+    private void registerEmailInParse() {
+
+        //TODO:  Check this.
+        String emailFromIntent = getIntent().getStringExtra(LoginActivity.EXTRA_EMAIL);
+        String email = (emailFromIntent == null) ? "example@test.com.do" : emailFromIntent;
+
+        mEmailHeader.setText(email);
+        mUsernameHeader.setText("Sr. Test Example");
+
+        if (!mPreferenceManager.isLoggeIn()) {
+            mPreferenceManager.createLoginSession(email, "password");
+            ParseConfig.subscribeWithEmail(email);
+        }
+    }
+
+    /**
+     *
+     * @param navigationView
+     */
+
 
     private void setupDrawerContent(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
@@ -134,8 +155,8 @@ public class DashboardContainerActivity extends AppCompatActivity
                         String title = menuItem.getTitle().toString();
                         selectItem(title);
 
-
-                        //TODO: put here the action to make in the navigation drawer
+                        Fragment fragment = null;
+                        FragmentManager fragmentManager = getSupportFragmentManager();
 
                         switch (menuItem.getItemId()) {
 
@@ -146,14 +167,22 @@ public class DashboardContainerActivity extends AppCompatActivity
                                 break;
 
                             case R.id.nav_explore:
+                                fragment = new CategoryFragment();
                                 break;
 
                             case R.id.nav_about:
+                                startActivity(new Intent(DashboardContainerActivity.this, AboutActivity.class));
                                 break;
 
                             case R.id.nav_sub_logout:
                                 logout();
                                 break;
+                        }
+
+                        if (fragment != null) {
+                                 fragmentManager.beginTransaction()
+                                         .replace(R.id.principal_content_relative, fragment)
+                                        .commit();
                         }
 
                         return true;
@@ -183,12 +212,24 @@ public class DashboardContainerActivity extends AppCompatActivity
         setTitle(title);
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent intent = new Intent(DashboardContainerActivity.this, SponsorSelectionActivity.class);
-        intent.putExtra(EXTRA_DRAWABLE_ID, mAdapter.getItem(position).getIdDrawable());
-        startActivity(intent);
-    }
+//
+//    @Override
+//    public void onClick(View v) {
+//        Intent intent = new Intent(CategoryActivity.this, SponsorSelectionActivity.class);
+//        intent.putExtra(EXTRA_DRAWABLE_ID, mAdapter.getItemViewType(position).getIdDrawable());
+//
+//        mAdapter.g
+//
+//        startActivity(intent);
+//
+//    }
+//
+//    @Override
+//    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//        Intent intent = new Intent(CategoryActivity.this, SponsorSelectionActivity.class);
+//        intent.putExtra(EXTRA_DRAWABLE_ID, mAdapter.getItem(position).getIdDrawable());
+//        startActivity(intent);
+//    }
 
     private void logout() {
         mPreferenceManager.logout();

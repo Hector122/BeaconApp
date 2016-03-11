@@ -64,7 +64,7 @@ public class RegisterActivity extends AppCompatActivity
     }
 
     private void startDashBoardCategoryActivity() {
-        //  Intent intent = new Intent(this, CategoryActivity.class);
+        //  Intent intent = new Intent(this, DashboardContainerActivity.class);
         // intent.putExtra(LoginActivity.EXTRA_EMAIL, mEmailView.getText().toString());
         //setResult(Activity.RESULT_OK);
 

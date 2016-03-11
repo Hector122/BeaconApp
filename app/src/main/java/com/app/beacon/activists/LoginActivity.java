@@ -198,7 +198,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
     }
 
     private void startDashBoardCategoryActivity() {
-        Intent intent = new Intent(this, CategoryActivity.class);
+        Intent intent = new Intent(this, DashboardContainerActivity.class);
         intent.putExtra(EXTRA_EMAIL, mEmailView.getText().toString());
         setResult(RESULT_OK);
 

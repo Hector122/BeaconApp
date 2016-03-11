@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 
 import com.app.beacon.activists.ForgotPasswordActivity;
-import com.app.beacon.activists.CategoryActivity;
+import com.app.beacon.activists.DashboardContainerActivity;
 import com.app.beacon.activists.LoginActivity;
 
 /**
@@ -58,7 +58,7 @@ public class SimulateAsyncTask extends AsyncTask<String, Void, Boolean> {
 
     private void startDashBoardCategoryActivity() {
         Activity activity = (Activity) mHelper.getContext();
-        Intent intent = new Intent(mHelper.getContext(), CategoryActivity.class);
+        Intent intent = new Intent(mHelper.getContext(), DashboardContainerActivity.class);
         intent.putExtra(LoginActivity.EXTRA_EMAIL, mEmail);
         activity.setResult(Activity.RESULT_OK);
 
