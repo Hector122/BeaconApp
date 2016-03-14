@@ -39,6 +39,9 @@
 
     <string name="email_example">email@example.com.do</string>
     <string name="number_example">(809) 555-1234</string>
+    <string name="change_password">Change Password</string>
+    <string name="change_Email">Change Email</string>
+    <string name="user_information">User Information.</string>
 
     <!-- Nav. Drawer -->
     <string name="item_home">Home</string>

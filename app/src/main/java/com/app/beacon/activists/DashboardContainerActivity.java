@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.app.beacon.R;
+import com.app.beacon.fragments.AboutFragment;
 import com.app.beacon.fragments.CategoryFragment;
 import com.app.beacon.helper.ParseConfig;
 import com.app.beacon.helper.PreferenceManager;
@@ -72,6 +73,15 @@ public class DashboardContainerActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if( requestCode == 5 && resultCode == RESULT_OK ){
+            replaceCurrentFragment(new AboutFragment());
+        }
     }
 
     /**
@@ -151,12 +161,12 @@ public class DashboardContainerActivity extends AppCompatActivity {
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
                         // Mark pressed item
                         menuItem.setChecked(true);
+
                         // Create a new Fragment
                         String title = menuItem.getTitle().toString();
                         selectItem(title);
 
                         Fragment fragment = null;
-                        FragmentManager fragmentManager = getSupportFragmentManager();
 
                         switch (menuItem.getItemId()) {
 
@@ -171,7 +181,7 @@ public class DashboardContainerActivity extends AppCompatActivity {
                                 break;
 
                             case R.id.nav_about:
-                                startActivity(new Intent(DashboardContainerActivity.this, AboutActivity.class));
+                                fragment = new AboutFragment();
                                 break;
 
                             case R.id.nav_sub_logout:
@@ -180,9 +190,7 @@ public class DashboardContainerActivity extends AppCompatActivity {
                         }
 
                         if (fragment != null) {
-                                 fragmentManager.beginTransaction()
-                                         .replace(R.id.principal_content_relative, fragment)
-                                        .commit();
+                                replaceCurrentFragment(fragment);
                         }
 
                         return true;
@@ -196,6 +204,14 @@ public class DashboardContainerActivity extends AppCompatActivity {
         //        if (mPreferenceManager.isLoggeIn() && mPreferenceManager.getEmail() != null) {
         //            emailNavigationView.setText(mPreferenceManager.getEmail());
         //        }
+    }
+
+
+    private void replaceCurrentFragment(Fragment fragment){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.principal_content_relative, fragment)
+                .commit();
     }
 
     /***
