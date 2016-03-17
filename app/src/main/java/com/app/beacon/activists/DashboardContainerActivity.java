@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.app.beacon.R;
 import com.app.beacon.fragments.AboutFragment;
 import com.app.beacon.fragments.CategoryFragment;
+import com.app.beacon.fragments.FavoriteFragments;
 import com.app.beacon.helper.ParseConfig;
 import com.app.beacon.helper.PreferenceManager;
 
@@ -174,6 +175,7 @@ public class DashboardContainerActivity extends AppCompatActivity {
                                 break;
 
                             case R.id.nav_favorite:
+                                fragment = new FavoriteFragments();
                                 break;
 
                             case R.id.nav_explore:

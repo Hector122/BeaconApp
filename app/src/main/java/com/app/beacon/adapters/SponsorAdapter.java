@@ -65,7 +65,6 @@ public class SponsorAdapter extends RecyclerView.Adapter<SponsorAdapter.ViewHold
      */
     @Override
     public int getItemCount() {
-
         return sponsorList.size();
     }
 
@@ -79,7 +78,7 @@ public class SponsorAdapter extends RecyclerView.Adapter<SponsorAdapter.ViewHold
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).
-                inflate(R.layout.item_sponsor_card_view, parent, false);
+                inflate(R.layout.item_sponsor, parent, false);
 
         ViewHolder holder = new ViewHolder(view);
         return holder;

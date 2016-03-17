@@ -59,7 +59,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     }
 
 
-
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         //get the item
@@ -76,7 +75,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, SponsorSelectionActivity.class);
-                intent.putExtra(DashboardContainerActivity.EXTRA_DRAWABLE_ID, items.get(position).getIdDrawable());
+                intent.putExtra(DashboardContainerActivity.EXTRA_DRAWABLE_ID,
+                        item.getIdDrawable());
                 mContext.startActivity(intent);
             }
         });
