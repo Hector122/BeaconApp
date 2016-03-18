@@ -9,24 +9,31 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.app.beacon.R;
 import com.app.beacon.adapters.FavoriteCompaniesAdapter;
-import java.util.Random;
 
 /**
  * Created by hector castillo on 14/3/16.
  */
 public class FavoriteCompanyFragment extends Fragment {
     private final int SPAN_COUNT = 3;
+    private final static String LAYOUT = "beacom.com.do.boolean";
 
     private RecyclerView mGridView;
     private RecyclerView.LayoutManager mLayoutManager;
     private Context mContext;
     private FavoriteCompaniesAdapter mAdapter;
 
-
-    //TODO:
     private boolean isLayoutOne;
+
+    public static FavoriteCompanyFragment newInstance(boolean value) {
+        FavoriteCompanyFragment fragment = new FavoriteCompanyFragment();
+        Bundle args = new Bundle();
+        args.putBoolean(LAYOUT, value);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Nullable
     @Override
@@ -52,18 +59,16 @@ public class FavoriteCompanyFragment extends Fragment {
         //Set the GridViewLayout Manager
         mLayoutManager = new GridLayoutManager(mContext, SPAN_COUNT);
         mGridView.setLayoutManager(mLayoutManager);
+
+        isLayoutOne = getArguments().getBoolean(LAYOUT);
     }
 
     /**
      * Initializer the data with the data need.
      */
     private void setFavoriteAdapter() {
-        Random random = new Random();
-        int generate = random.nextInt(5);
 
-        boolean x = (generate < 3) ? true : false;
-
-        mAdapter = new FavoriteCompaniesAdapter(x, getActivity());
+        mAdapter = new FavoriteCompaniesAdapter(isLayoutOne, getActivity());
         mGridView.setAdapter(mAdapter);
 
 //        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

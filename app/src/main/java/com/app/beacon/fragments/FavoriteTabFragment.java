@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * Created by hector castillo on 14/3/16.
  */
-public class FavoriteFragments extends Fragment {
+public class FavoriteTabFragment extends Fragment {
     private AppBarLayout mAppBar;
     private TabLayout mTabs;
     private ViewPager mViewPager;
@@ -44,26 +44,23 @@ public class FavoriteFragments extends Fragment {
 
 
     private void initializerVariables(ViewGroup container, View view) {
+        mViewPager = (ViewPager) view.findViewById(R.id.pager_view);
+
         View root = (View) container.getParent();
         mAppBar = (AppBarLayout) root.findViewById(R.id.appbar);
-
-        mTabs = new TabLayout(getActivity());
-
-        mViewPager = (ViewPager) view.findViewById(R.id.pager_view);
     }
 
     private void insertTabs() {
+        mTabs = new TabLayout(getActivity());
         mTabs.setTabTextColors(Color.parseColor("#FFFFFF"), Color.parseColor("#FFFFFF"));
-       // mTabs.setupWithViewPager(mViewPager);
-
         mAppBar.addView(mTabs);
     }
 
     //TODO: here ;)
     private void setViewPager() {
         DivisionAdapter adapter = new DivisionAdapter(getFragmentManager());
-        adapter.addFragment(new FavoriteCompanyFragment(),getString(R.string.action_sign_in));
-        adapter.addFragment(new FavoriteCompanyFragment(), getString(R.string.action_continue));
+        adapter.addFragment(new FavoriteCompanyFragment().newInstance(true), getString(R.string.action_sign_in));
+        adapter.addFragment(new FavoriteCompanyFragment().newInstance(false), getString(R.string.action_continue));
         mViewPager.setAdapter(adapter);
     }
 
@@ -73,7 +70,6 @@ public class FavoriteFragments extends Fragment {
         super.onDestroyView();
         mAppBar.removeView(mTabs);
     }
-
 
     public class DivisionAdapter extends FragmentStatePagerAdapter {
         private final List<Fragment> fragments = new ArrayList<>();
@@ -93,14 +89,14 @@ public class FavoriteFragments extends Fragment {
             return fragments.size();
         }
 
-        public void addFragment(Fragment fragment, String title) {
-            fragments.add(fragment);
-            fragmentsTitles.add(title);
-        }
-
         @Override
         public CharSequence getPageTitle(int position) {
             return fragmentsTitles.get(position);
+        }
+
+        public void addFragment(Fragment fragment, String title) {
+            fragments.add(fragment);
+            fragmentsTitles.add(title);
         }
     }
 }

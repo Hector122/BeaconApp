@@ -128,7 +128,7 @@ public class SponsorDetailActivity extends AppCompatActivity
                 break;
 
             case R.id.floating_button:
-                Snackbar.make(v, "Save this in favorite.", Snackbar.LENGTH_SHORT);
+                Snackbar.make(v, "Save this in favorite.", Snackbar.LENGTH_SHORT).show();
                 break;
 
         }

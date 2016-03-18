@@ -18,7 +18,8 @@ import android.widget.TextView;
 import com.app.beacon.R;
 import com.app.beacon.fragments.AboutFragment;
 import com.app.beacon.fragments.CategoryFragment;
-import com.app.beacon.fragments.FavoriteFragments;
+import com.app.beacon.fragments.FavoriteTabFragment;
+import com.app.beacon.fragments.MainSponsorFragment;
 import com.app.beacon.helper.ParseConfig;
 import com.app.beacon.helper.PreferenceManager;
 
@@ -29,6 +30,7 @@ import com.app.beacon.helper.PreferenceManager;
 public class DashboardContainerActivity extends AppCompatActivity {
     public static final String EXTRA_DRAWABLE_ID = "app.android.beacon.image";
 
+    //View reference variables.
     private DrawerLayout mDrawerLayout;
     private String mDrawerTitle;
     private PreferenceManager mPreferenceManager;
@@ -51,12 +53,9 @@ public class DashboardContainerActivity extends AppCompatActivity {
         //Register email address in parse.
         registerEmailInParse();
 
-        //TODO: fill this with the principal layout fragment.
-        //setAdater();
-
         mDrawerTitle = getResources().getString(R.string.item_home);
         if (savedInstanceState == null) {
-            selectItem(mDrawerTitle);
+            selectItemTitle(mDrawerTitle);
         }
     }
 
@@ -76,11 +75,12 @@ public class DashboardContainerActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    //TODO: Check is this is needed.
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if( requestCode == 5 && resultCode == RESULT_OK ){
+        if (requestCode == 5 && resultCode == RESULT_OK) {
             replaceCurrentFragment(new AboutFragment());
         }
     }
@@ -90,7 +90,7 @@ public class DashboardContainerActivity extends AppCompatActivity {
      */
 
     private void initializeVariables() {
-        //Get the SharePreference Manger
+        //Get the SharePreference Manager
         mPreferenceManager = new PreferenceManager(this);
 
         //Get the Navigation Drawer
@@ -99,7 +99,11 @@ public class DashboardContainerActivity extends AppCompatActivity {
         //Set the Navigation Drawer content view.
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         if (navigationView != null) {
-            setupDrawerContent(navigationView);
+            //set the content in drawer
+            setUpDrawerContent(navigationView);
+
+            //Select item by default
+            selectItem(navigationView.getMenu().getItem(0));
 
             //Reference to header container in the Nav.
             View view = navigationView.getHeaderView(0);
@@ -149,67 +153,68 @@ public class DashboardContainerActivity extends AppCompatActivity {
     }
 
     /**
-     *
      * @param navigationView
      */
-
-
-    private void setupDrawerContent(NavigationView navigationView) {
+    private void setUpDrawerContent(final NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
 
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        // Mark pressed item
                         menuItem.setChecked(true);
-
-                        // Create a new Fragment
-                        String title = menuItem.getTitle().toString();
-                        selectItem(title);
-
-                        Fragment fragment = null;
-
-                        switch (menuItem.getItemId()) {
-
-                            case R.id.nav_home:
-                                break;
-
-                            case R.id.nav_favorite:
-                                fragment = new FavoriteFragments();
-                                break;
-
-                            case R.id.nav_explore:
-                                fragment = new CategoryFragment();
-                                break;
-
-                            case R.id.nav_about:
-                                fragment = new AboutFragment();
-                                break;
-
-                            case R.id.nav_sub_logout:
-                                logout();
-                                break;
-                        }
-
-                        if (fragment != null) {
-                                replaceCurrentFragment(fragment);
-                        }
-
+                        selectItem(menuItem);
+                        mDrawerLayout.closeDrawers();
                         return true;
                     }
-                }
-        );
-        //TODO: set the email form the intent
-        TextView emailNavigationView = (TextView) navigationView.findViewById(R.id.nav_email_text_view);
-
-        //
-        //        if (mPreferenceManager.isLoggeIn() && mPreferenceManager.getEmail() != null) {
-        //            emailNavigationView.setText(mPreferenceManager.getEmail());
-        //        }
+                });
     }
 
+    /**
+     * Select the item fo ingfla
+     * @param menuItem
+     */
 
-    private void replaceCurrentFragment(Fragment fragment){
+    private void selectItem(MenuItem menuItem) {
+        // Create a new Fragment
+        Fragment fragment = null;
+
+        switch (menuItem.getItemId()) {
+            case R.id.nav_home:
+                fragment = new MainSponsorFragment();
+                break;
+
+            case R.id.nav_favorite:
+                fragment = new FavoriteTabFragment();
+                break;
+
+            case R.id.nav_explore:
+                fragment = new CategoryFragment();
+                break;
+
+            case R.id.nav_about:
+                fragment = new AboutFragment();
+                break;
+
+            case R.id.nav_sub_logout:
+                logout();
+                break;
+        }
+
+        if (fragment != null) {
+            replaceCurrentFragment(fragment);
+        }
+
+        //Set the actual title.
+        String title = menuItem.getTitle().toString();
+        selectItemTitle(title);
+    }
+
+    /**
+     *  Set the fragment activity to show in the principal activity.
+     * @param fragment
+     */
+
+    private void replaceCurrentFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.principal_content_relative, fragment)
@@ -222,7 +227,7 @@ public class DashboardContainerActivity extends AppCompatActivity {
      * @param title String with the name of
      */
 
-    private void selectItem(String title) {
+    private void selectItemTitle(String title) {
         //Close drawer
         mDrawerLayout.closeDrawers();
 
@@ -230,24 +235,9 @@ public class DashboardContainerActivity extends AppCompatActivity {
         setTitle(title);
     }
 
-//
-//    @Override
-//    public void onClick(View v) {
-//        Intent intent = new Intent(CategoryActivity.this, SponsorSelectionActivity.class);
-//        intent.putExtra(EXTRA_DRAWABLE_ID, mAdapter.getItemViewType(position).getIdDrawable());
-//
-//        mAdapter.g
-//
-//        startActivity(intent);
-//
-//    }
-//
-//    @Override
-//    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//        Intent intent = new Intent(CategoryActivity.this, SponsorSelectionActivity.class);
-//        intent.putExtra(EXTRA_DRAWABLE_ID, mAdapter.getItem(position).getIdDrawable());
-//        startActivity(intent);
-//    }
+    /**
+     * Remove the user credentials in SharePreference.
+     */
 
     private void logout() {
         mPreferenceManager.logout();
