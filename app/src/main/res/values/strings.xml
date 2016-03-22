@@ -51,6 +51,12 @@
     <string name="sub_item_title">Configuration</string>
     <string name="sub_item_logout">Logout</string>
 
+
+    <!-- Tabs title -->
+    <string name="tab_company_one">OneCompany</string>
+    <string name="tab_company_two">TwoCompany</string>
+    <string name="tab_fav_list">Favorites</string>
+
     <string name="menu_settings">Settings</string>
 
     <string name="paragraph_example">Morbi posuere lorem nec elit dapibus, vitae accumsan mauris

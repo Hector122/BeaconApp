@@ -22,6 +22,8 @@ public class SponsorAdapter extends RecyclerView.Adapter<SponsorAdapter.ViewHold
     //List container the sponsor item.
     private List<Sponsor> sponsorList;
 
+    private boolean value;
+
     //ViewHolder patters for better performance.
     public static class ViewHolder extends RecyclerView.ViewHolder {
         //item fields
@@ -42,6 +44,21 @@ public class SponsorAdapter extends RecyclerView.Adapter<SponsorAdapter.ViewHold
     }
 
     /**
+     * Constructor.
+     *
+     * @param sponsorList list of sponsor with the information need.
+     */
+    public SponsorAdapter(List<Sponsor> sponsorList ) {
+        this.sponsorList = sponsorList;
+    }
+
+
+    public SponsorAdapter(List<Sponsor> sponsorList, boolean value ) {
+        this.sponsorList = sponsorList;
+        this.value = value;
+    }
+
+    /**
      * remove all element in the recycler
      */
     public void clear() {
@@ -49,14 +66,6 @@ public class SponsorAdapter extends RecyclerView.Adapter<SponsorAdapter.ViewHold
         notifyDataSetChanged();
     }
 
-    /**
-     * Constructor.
-     *
-     * @param sponsorList list of sponsor with the information need.
-     */
-    public SponsorAdapter(List<Sponsor> sponsorList) {
-        this.sponsorList = sponsorList;
-    }
 
     /**
      * Return the size of the list
@@ -77,8 +86,16 @@ public class SponsorAdapter extends RecyclerView.Adapter<SponsorAdapter.ViewHold
      */
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).
-                inflate(R.layout.item_sponsor, parent, false);
+        View view = null;
+
+        if (value) {
+            view = LayoutInflater.from(parent.getContext()).
+                    inflate(R.layout.item_fav_sponsor_list, parent, false);
+
+        } else {
+            view = LayoutInflater.from(parent.getContext()).
+                    inflate(R.layout.item_sponsor, parent, false);
+        }
 
         ViewHolder holder = new ViewHolder(view);
         return holder;
@@ -107,7 +124,7 @@ public class SponsorAdapter extends RecyclerView.Adapter<SponsorAdapter.ViewHold
                 intent.putExtra(SponsorDetailActivity.EXTRA_PARAM_ID,
                         sponsorList.get(position));
 
-                context.startActivity( intent);
+                context.startActivity(intent);
             }
         });
     }

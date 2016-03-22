@@ -37,6 +37,8 @@ public class FavoriteTabFragment extends Fragment {
             insertTabs();
 
             setViewPager();
+
+            mTabs.setupWithViewPager(mViewPager);
         }
 
         return view;
@@ -59,8 +61,9 @@ public class FavoriteTabFragment extends Fragment {
     //TODO: here ;)
     private void setViewPager() {
         DivisionAdapter adapter = new DivisionAdapter(getFragmentManager());
-        adapter.addFragment(new FavoriteCompanyFragment().newInstance(true), getString(R.string.action_sign_in));
-        adapter.addFragment(new FavoriteCompanyFragment().newInstance(false), getString(R.string.action_continue));
+        adapter.addFragment(new FavoriteCompanyFragment().newInstance(true), getString(R.string.tab_company_one));
+        adapter.addFragment(new FavoriteCompanyFragment().newInstance(false), getString(R.string.tab_company_two));
+        adapter.addFragment(new FavoriteSponsorList(), getString(R.string.tab_fav_list));
         mViewPager.setAdapter(adapter);
     }
 

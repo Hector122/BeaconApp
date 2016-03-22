@@ -8,9 +8,7 @@
     android:layout_height="match_parent">
 
     <!-- The main content view -->
-
     <include layout="@layout/principal_content"/>
-
 
     <!-- The navigation View -->
     <android.support.design.widget.NavigationView

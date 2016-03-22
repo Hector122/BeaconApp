@@ -102,16 +102,37 @@ public class FavoriteCompaniesAdapter extends RecyclerView.Adapter<FavoriteCompa
         public final static List<FavoritesCompany> COMPANIES = new ArrayList<FavoritesCompany>();
 
         static {
-            COMPANIES.add(new FavoritesCompany("ZARA_1", R.drawable.category_all));
-            COMPANIES.add(new FavoritesCompany("ZARA", R.drawable.category_all));
-            COMPANIES.add(new FavoritesCompany("ZARA",  R.drawable.category_all));
-            COMPANIES.add(new FavoritesCompany("ZARA", R.drawable.category_all));
-            COMPANIES.add(new FavoritesCompany("ZARA", R.drawable.category_all));
-            COMPANIES.add(new FavoritesCompany("ZARA",  R.drawable.category_all));
-            COMPANIES.add(new FavoritesCompany("ZARA", R.drawable.category_all));
-            COMPANIES.add(new FavoritesCompany("ZARA", R.drawable.category_all));
-            COMPANIES.add(new FavoritesCompany("ZARA", R.drawable.category_all));
-            COMPANIES.add(new FavoritesCompany("ZAR_2",  R.drawable.category_all));
+
+            int[] logoImages = {
+                    R.drawable.logo_apple_200x200,
+                    R.drawable.logo_levis_200x200,
+                    R.drawable.logo_mcdonald_logo_200x200,
+                    R.drawable.logo_nike_200x200,
+                    R.drawable.logo_taco_bell_200x200,
+                    R.drawable.logo_zara_200x200,
+                    R.drawable.logo_toyota_200x200,
+                    R.drawable.logo_nike_200x200,
+                    R.drawable.logo_apple_200x200,
+                    R.drawable.logo_taco_bell_200x200
+            };
+
+            String[] logoNames = {"APPLE", "LEVIS", "MCDONALD'S","NIKE","TACO BELL",
+                    "ZARA", "TOYOTA", "NIKE", "APPLE", "TACO BELL"};
+
+            for(int i = 0; i < 10 ; i ++){
+                COMPANIES.add(new FavoritesCompany(logoNames[i], logoImages[i]));
+            }
+//
+//            COMPANIES.add(new FavoritesCompany("ZARA_1", R.drawable.category_all));
+//            COMPANIES.add(new FavoritesCompany("ZARA", R.drawable.category_all));
+//            COMPANIES.add(new FavoritesCompany("ZARA",  R.drawable.category_all));
+//            COMPANIES.add(new FavoritesCompany("ZARA", R.drawable.category_all));
+//            COMPANIES.add(new FavoritesCompany("ZARA", R.drawable.category_all));
+//            COMPANIES.add(new FavoritesCompany("ZARA",  R.drawable.category_all));
+//            COMPANIES.add(new FavoritesCompany("ZARA", R.drawable.category_all));
+//            COMPANIES.add(new FavoritesCompany("ZARA", R.drawable.category_all));
+//            COMPANIES.add(new FavoritesCompany("ZARA", R.drawable.category_all));
+//            COMPANIES.add(new FavoritesCompany("ZAR_2",  R.drawable.category_all));
         }
     }
 }
