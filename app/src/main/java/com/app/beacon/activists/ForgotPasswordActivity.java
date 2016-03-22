@@ -93,7 +93,7 @@ public class ForgotPasswordActivity extends AppCompatActivity
         HelperAsync helper = new HelperAsync(title, message, ForgotPasswordActivity.this);
 
         //Begin the simulation task.
-        new SimulateAsyncTask(helper).execute();
+        new SimulateAsyncTask(helper).execute(mEmailView.getText().toString());
 
        // finish();
     }

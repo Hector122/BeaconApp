@@ -16,6 +16,7 @@
     <string name="action_sign_in_facebook">Sign in with facebook</string>
     <string name="action_sign_in_google">Sign in with google</string>
     <string name="action_register">Register</string>
+    <string name="action_register_email">with email</string>
     <string name="action_action_register_facebook"> with facebook</string>
     <string name="action_action_register_google">with google</string>
     <string name="action_continue">Continue</string>

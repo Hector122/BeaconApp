@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 import com.app.beacon.R;
 import com.app.beacon.adapters.CategoryAdapter;
+import com.app.beacon.app.AppConstants;
 import com.app.beacon.custom.CustomItemDecorator;
 import com.app.beacon.sponsor.SponsorCategory;
 
@@ -20,10 +21,6 @@ import com.app.beacon.sponsor.SponsorCategory;
  * Created by hector castillo on 11/3/16.
  */
 public class CategoryFragment extends Fragment {
-    //Number of column in the gridView.
-    private static final int SPAN_COUNT = 2;
-    private static final int GRID_MARGIN = 20;
-
     //Views Reference Variables.
     private RecyclerView mGridView;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -57,7 +54,7 @@ public class CategoryFragment extends Fragment {
         mGridView.setHasFixedSize(true);
 
         //Set the GridViewLayout Manager
-        mLayoutManager = new GridLayoutManager(mContext, SPAN_COUNT);
+        mLayoutManager = new GridLayoutManager(mContext, AppConstants.SPAN_COUNT_TWO);
         mGridView.setLayoutManager(mLayoutManager);
 
     }
@@ -70,7 +67,7 @@ public class CategoryFragment extends Fragment {
         mGridView.setAdapter(mAdapter);
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            mGridView.addItemDecoration(new CustomItemDecorator(GRID_MARGIN));
+            mGridView.addItemDecoration(new CustomItemDecorator(AppConstants.GRID_MARGIN));
             mGridView.setMinimumHeight(170);
         }
     }

@@ -1,13 +1,14 @@
 package com.app.beacon.fragments;
 
-import android.support.v4.app.FragmentManager;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,7 +55,10 @@ public class FavoriteTabFragment extends Fragment {
 
     private void insertTabs() {
         mTabs = new TabLayout(getActivity());
+        mTabs.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.colorPrimary));
+        mTabs.setSelectedTabIndicatorColor(ContextCompat.getColor(getActivity(), R.color.colorAccent));
         mTabs.setTabTextColors(Color.parseColor("#FFFFFF"), Color.parseColor("#FFFFFF"));
+
         mAppBar.addView(mTabs);
     }
 

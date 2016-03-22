@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.app.beacon.R;
 import com.app.beacon.asynctask.HelperAsync;
@@ -22,6 +23,7 @@ public class MainActivity extends Activity implements OnClickListener {
     //Reference to login and Register button views.
     private Button mButtonLogin;
     private Button mButtonRegister;
+    private LinearLayout mMainActionContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,7 @@ public class MainActivity extends Activity implements OnClickListener {
         boolean isLoggedIn = preferenceManager.isLoggeIn();
 
         if (isLoggedIn) {
+            mMainActionContainer.setVisibility(View.INVISIBLE);
             String email = preferenceManager.getEmail();
 
             String title = getString(R.string.dummy_title_login);
@@ -47,11 +50,8 @@ public class MainActivity extends Activity implements OnClickListener {
             HelperAsync helperAsync = new HelperAsync(title, message, this);
             new SimulateAsyncTask(helperAsync).execute(email);
 
-//            Intent intent = new Intent(this.getApplication(), DashboardContainerActivity.class);
-//            intent.putExtra(LoginActivity.EXTRA_EMAIL, email);
-//            startActivity(intent);
-//
-//            finish();
+        } else{
+            mMainActionContainer.setVisibility(View.VISIBLE);
         }
     }
 
@@ -78,6 +78,8 @@ public class MainActivity extends Activity implements OnClickListener {
 
         mButtonRegister = (Button) findViewById(R.id.register_button);
         mButtonRegister.setOnClickListener(this);
+
+        mMainActionContainer = (LinearLayout) findViewById(R.id.login_and_register_container);
     }
 
     /**

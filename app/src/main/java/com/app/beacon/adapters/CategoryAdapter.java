@@ -44,7 +44,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     /***
      * View Holder patter
      */
-
     public class ViewHolder extends RecyclerView.ViewHolder {
         public View viewHolder;
         public TextView categoryName;
@@ -58,7 +57,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         }
     }
 
-
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         //get the item
@@ -69,7 +67,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
                 .load(item.getIdDrawable())
                 .crossFade(300)
                 .into(holder.categoryImage);
-
 
         holder.viewHolder.setOnClickListener(new View.OnClickListener() {
             @Override

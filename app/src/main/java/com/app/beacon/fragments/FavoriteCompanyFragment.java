@@ -1,6 +1,7 @@
 package com.app.beacon.fragments;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,12 +13,13 @@ import android.view.ViewGroup;
 
 import com.app.beacon.R;
 import com.app.beacon.adapters.FavoriteCompaniesAdapter;
+import com.app.beacon.app.AppConstants;
+import com.app.beacon.custom.CustomItemDecorator;
 
 /**
  * Created by hector castillo on 14/3/16.
  */
 public class FavoriteCompanyFragment extends Fragment {
-    private final int SPAN_COUNT = 3;
     private final static String LAYOUT = "beacom.com.do.boolean";
 
     private RecyclerView mGridView;
@@ -57,7 +59,7 @@ public class FavoriteCompanyFragment extends Fragment {
         mGridView.setHasFixedSize(true);
 
         //Set the GridViewLayout Manager
-        mLayoutManager = new GridLayoutManager(mContext, SPAN_COUNT);
+        mLayoutManager = new GridLayoutManager(mContext, AppConstants.SPAN_COUNT_THREE);
         mGridView.setLayoutManager(mLayoutManager);
 
         isLayoutOne = getArguments().getBoolean(LAYOUT);
@@ -67,13 +69,17 @@ public class FavoriteCompanyFragment extends Fragment {
      * Initializer the data with the data need.
      */
     private void setFavoriteAdapter() {
-
         mAdapter = new FavoriteCompaniesAdapter(isLayoutOne, getActivity());
         mGridView.setAdapter(mAdapter);
 
-//        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//            mGridView.addItemDecoration(new CustomItemDecorator(GRID_MARGIN));
-//            mGridView.setMinimumHeight(170);
-//        }
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            if (isLayoutOne) {
+                mGridView.addItemDecoration(new CustomItemDecorator(AppConstants.GRID_MARGIN));
+                mGridView.setMinimumHeight(170);
+            } else {
+                mGridView.addItemDecoration(new CustomItemDecorator(AppConstants.GRID_MARGIN, true));
+                mGridView.setMinimumHeight(120);
+            }
+        }
     }
 }

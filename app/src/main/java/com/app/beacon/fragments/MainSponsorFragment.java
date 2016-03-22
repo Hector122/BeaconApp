@@ -84,8 +84,6 @@ public class MainSponsorFragment extends Fragment {
 
         list.add(sponsor);
 
-
-
         //Dummy Random data for the demonstration.
         for (int i = 0; i < 5; i++) {
             sponsor = new Sponsor();
@@ -100,7 +98,6 @@ public class MainSponsorFragment extends Fragment {
         //Set the adapter
         mAdapter = new SponsorAdapter(list);
         mRecyclerView.setAdapter(mAdapter);
-
     }
 
 

@@ -66,10 +66,12 @@
         <Button
             android:id="@+id/register_with_facebook"
             android:background="@drawable/facebook_sing_in_button"
+            android:visibility="gone"
             style="@style/LongSingInActionButtonFacebookAndGoogle" />
 
         <Button
             android:id="@+id/register_with_google"
+            android:visibility="gone"
             android:background="@drawable/google_sign_in_button"
             style="@style/LongSingInActionButtonFacebookAndGoogle" />
 
