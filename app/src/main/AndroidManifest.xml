@@ -9,6 +9,9 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
+    <!-- permission for get the Mac Address-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
     <!--  permission is only required for this demo in order to get the user's location -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
@@ -45,7 +48,7 @@
 
         <!-- Activity's -->
         <activity
-            android:name="com.app.beacon.activists.MainActivity"
+            android:name="com.app.beacon.activists.MacAddress"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <intent-filter>
